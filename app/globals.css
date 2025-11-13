@@ -13,6 +13,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
