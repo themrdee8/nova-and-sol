@@ -1,12 +1,12 @@
 @font-face {
-  font-family: Satisfy;
-  src: url("../public/fonts/Satisfy-Regular.ttf")
+  font-family: Cinzel;
+  src: url("../public/fonts/CinzelDecorative-Bold.ttf")
 }
 
 @import "tailwindcss";
 
 @theme {
-  --font-Satisfy: Satisfy;
+  --font-Cinzel: Cinzel;
 }
 
 html {

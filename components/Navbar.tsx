@@ -22,7 +22,7 @@ const Navbar = () => {
             <RxHamburgerMenu size={20} className={`${scrollBg ? 'text-black': "text-white" }`} />
         </div>
         <div className='ml-2'>
-          <p className={`font-Satisfy transition-all duration-300 ${scrollBg ? 'text-black text-[18px]': "text-white text-[20px]" }`}>Nova & Sol</p>
+          <p className={`font-Cinzel transition-all duration-300 ${scrollBg ? 'text-black text-[20px]': "text-white text-[22px]" }`}>Nova & Sol</p>
         </div>
         <div className='flex space-x-4'>
           <FiSearch size={20} className={`${scrollBg ? 'text-black': "text-white" }`} />

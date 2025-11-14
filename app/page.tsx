@@ -7,6 +7,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import CategoryCard from "@/components/CategoryCard";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -39,6 +40,7 @@ export default function Home() {
         
           <CategoryCard/>
         
+        <Contact />
         
       </main>
     </div>
