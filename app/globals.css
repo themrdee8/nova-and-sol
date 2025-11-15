@@ -3,10 +3,16 @@
   src: url("../public/fonts/CinzelDecorative-Bold.ttf")
 }
 
+@font-face {
+  font-family: Eb;
+  src: url("../public/fonts/EBGaramond-VariableFont_wght.ttf")
+}
+
 @import "tailwindcss";
 
 @theme {
   --font-Cinzel: Cinzel;
+  --font-Eb: Eb;
 }
 
 html {

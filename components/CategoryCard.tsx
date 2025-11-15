@@ -40,7 +40,7 @@ const CategoryCard = () => {
             alt={category.categoryName}
             className="object-cover col-start-1 row-start-1 h-[350px]"
           />
-          <p className="col-start-1 row-start-1 uppercase text-white mt-[200px]">
+          <p className="col-start-1 row-start-1 uppercase font-Eb text-[20px] text-white mt-[200px]">
             {category.categoryName}
           </p>
           <Button
