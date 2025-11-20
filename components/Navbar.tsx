@@ -6,6 +6,7 @@ import { FiSearch } from "react-icons/fi";
 import { FaPlus, FaArrowRightToBracket } from "react-icons/fa6";
 import { IoIosClose } from "react-icons/io";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [scrollBg, setScrollBg] = useState(false);
@@ -13,6 +14,8 @@ const Navbar = () => {
   const [categoryList, setCategoryList] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
+  const pathname = usePathname();
+  const isProductPage = pathname.startsWith("/productDetails/");
 
   const categoryLink = [
     { pageName: "streetwear", pageLink: "/streetWear" },
@@ -47,12 +50,12 @@ const Navbar = () => {
     setCartMenu(!cartMenu);
   };
 
+  const glassEffect = searchBar || scrollBg || isProductPage;
+
   return (
     <div
       className={`flex justify-between transition-all duration-300 p-2.5 items-center fixed w-full ${
-        searchBar
-          ? "bg-white"
-          : scrollBg
+        glassEffect
           ? "bg-white shadow-md"
           : "bg-transparent"
       }`}
@@ -61,35 +64,35 @@ const Navbar = () => {
         <RxHamburgerMenu
           size={20}
           className={` ${
-            searchBar ? "text-black" : scrollBg ? "text-black" : "text-white"
+            glassEffect ? "text-black" : "text-white"
           }`}
         />
       </div>
       <div className="ml-2">
+        <Link href="/">
         <p
           className={`font-Cinzel transition-all duration-300 ${
-            searchBar
-              ? "text-black text-[22px]"
-              : scrollBg
+            glassEffect
               ? "text-black text-[20px]"
               : "text-white text-[22px]"
           }`}
         >
           Nova & Sol
         </p>
+        </Link>
       </div>
       <div className="flex space-x-4">
         <FiSearch
           size={20}
           className={`${
-            searchBar ? "text-black" : scrollBg ? "text-black" : "text-white"
+            glassEffect ? "text-black" : "text-white"
           }`}
           onClick={toggleSearch}
         />
         <MdOutlineShoppingCart
           size={20}
           className={`${
-            searchBar ? "text-black" : scrollBg ? "text-black" : "text-white"
+            glassEffect ? "text-black" : "text-white"
           }`}
           onClick={toggleCartMenu}
         />

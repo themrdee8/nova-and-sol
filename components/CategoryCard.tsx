@@ -6,27 +6,27 @@ import Image from "next/image";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
 
+export const categories = [
+  { categoryName: "street wear", pageLink: "/streetWear", imageUrl: cat },
+  {
+    categoryName: "the sol strand",
+    pageLink: "/theSolStrand",
+    imageUrl: cat,
+  },
+  { categoryName: "amari", pageLink: "/amari", imageUrl: cat },
+  {
+    categoryName: "the charm bar",
+    pageLink: "/theCharmBar",
+    imageUrl: cat,
+  },
+  {
+    categoryName: "the perfect find",
+    pageLink: "/thePerfectFind",
+    imageUrl: cat,
+  },
+];
 const CategoryCard = () => {
   const router = useRouter();
-  const categories = [
-    { categoryName: "street wear", pageLink: "/streetWear", imageUrl: cat },
-    {
-      categoryName: "the sol strand",
-      pageLink: "/theSolStrand",
-      imageUrl: cat,
-    },
-    { categoryName: "amari", pageLink: "/amari", imageUrl: cat },
-    {
-      categoryName: "the charm bar",
-      pageLink: "/theCharmBar",
-      imageUrl: cat,
-    },
-    {
-      categoryName: "the perfect find",
-      pageLink: "/thePerfectFind",
-      imageUrl: cat,
-    },
-  ];
 
   const handleClick = (link: any) => {
     router.push(link)

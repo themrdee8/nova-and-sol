@@ -8,6 +8,7 @@ import Button from "@/components/Button";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import CategoryCard from "@/components/CategoryCard";
 import Contact from "@/components/Contact";
+import { products } from "./data/products";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
             className="h-[600px] object-cover col-start-1 row-start-1"
           />
 
-          <Button name="Shop now" styles='col-start-1 row-start-1 mt-[550px]'/>
+          <Button name="Shop now" styles="col-start-1 row-start-1 mt-[550px]" />
         </div>
 
         <div className="bg-gray-100">
@@ -29,19 +30,21 @@ export default function Home() {
             <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
           </div>
           <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
-            <NewArrivalsCard imageUrl={banner} name="banner" price="$4.00" />
-            <NewArrivalsCard imageUrl={banner} name="banner" price="$4.00" />
-            <NewArrivalsCard imageUrl={banner} name="banner" price="$4.00" />
-            <NewArrivalsCard imageUrl={banner} name="banner" price="$4.00" />
+            {products.slice(0, 4).map((product) => (
+              <NewArrivalsCard
+                key={product.name}
+                imageUrl={product.image}
+                name={product.name}
+                price={product.price}
+              />
+            ))}
           </div>
           <Button name="view all" styles="flex justify-center pb-10" />
         </div>
 
-        
-          <CategoryCard/>
-        
+        <CategoryCard />
+
         <Contact />
-        
       </main>
     </div>
   );
