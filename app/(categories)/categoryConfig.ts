@@ -19,4 +19,8 @@ export const categoryConfig = {
     title: "the perfect find",
     description: ["curated", "seasonal", "giftable"],
   },
+  newArrivals: {
+    title: "new arrivals",
+    description: ["latest installments"]
+  }
 };

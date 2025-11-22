@@ -1,5 +1,4 @@
-// import Image from "next/image";
-
+"use client"
 import Navbar from "@/components/Navbar";
 // import Link from "next/link";
 import banner from "../public/images/banner.jpg";
@@ -9,13 +8,18 @@ import NewArrivalsCard from "@/components/NewArrivalsCard";
 import CategoryCard from "@/components/CategoryCard";
 import Contact from "@/components/Contact";
 import { products } from "./data/products";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  const newArrivals = () => {
+    router.push("/newArrivals")
+  }
   return (
     <div className="">
       <main className="">
         <Navbar />
-        <div className="bg-amber-200 h-[600px] grid place-items-center">
+        <div className="h-[600px] grid place-items-center">
           <Image
             src={banner}
             alt="banner"
@@ -27,7 +31,7 @@ export default function Home() {
 
         <div className="bg-gray-100">
           <div className="bg-white flex justify-center p-8">
-            <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
+            <p className="uppercase text-4xl font-serif mt-4 text-[#422727]">new arrivals</p>
           </div>
           <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
             {products.slice(0, 4).map((product) => (
@@ -39,7 +43,7 @@ export default function Home() {
               />
             ))}
           </div>
-          <Button name="view all" styles="flex justify-center pb-10" />
+          <Button onclick={newArrivals} name="view all" styles="flex justify-center pb-10" />
         </div>
 
         <CategoryCard />

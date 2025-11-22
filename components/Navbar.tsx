@@ -64,7 +64,7 @@ const Navbar = () => {
         <RxHamburgerMenu
           size={20}
           className={` ${
-            glassEffect ? "text-black" : "text-white"
+            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
           }`}
         />
       </div>
@@ -73,8 +73,8 @@ const Navbar = () => {
         <p
           className={`font-Cinzel transition-all duration-300 ${
             glassEffect
-              ? "text-black text-[20px]"
-              : "text-white text-[22px]"
+              ? "text-[#422727] text-[20px]"
+              : "text-[#E8d3a4] text-[22px]"
           }`}
         >
           Nova & Sol
@@ -85,14 +85,14 @@ const Navbar = () => {
         <FiSearch
           size={20}
           className={`${
-            glassEffect ? "text-black" : "text-white"
+            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
           }`}
           onClick={toggleSearch}
         />
         <MdOutlineShoppingCart
           size={20}
           className={`${
-            glassEffect ? "text-black" : "text-white"
+            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
           }`}
           onClick={toggleCartMenu}
         />

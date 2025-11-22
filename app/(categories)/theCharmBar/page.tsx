@@ -1,18 +1,59 @@
 "use client";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
-import { products } from "@/app/data/products";
+import { charmbar } from "@/app/data/products";
+import { useState } from "react";
+import Button from "@/components/Button";
 
 const TheCharmBarPage = () => {
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+  const initialVisibleCount: Record<string, number> = {
+    bracelet: 4,
+    necklace: 4,
+    charms: 6,
+  };
+
+  const toggleExpand = (sectionName: string) => {
+    setExpanded((previous) => ({
+      ...previous,
+      [sectionName]: !previous[sectionName],
+    }));
+  };
+
   return (
-    <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
-      {products.map((product) => (
-        <NewArrivalsCard
-          key={product.name}
-          imageUrl={product.image}
-          name={product.name}
-          price={product.price}
-        />
-      ))}
+    <div className="grid gap-1 py-10 px-4">
+      {Object.entries(charmbar).map(([sectionName, products]) => {
+        const isExpanded = expanded[sectionName];
+        const visibleCount = isExpanded
+          ? products.length
+          : initialVisibleCount[sectionName] || 4;
+        return (
+          <div key={sectionName}>
+            <p className="font-Eb text-[23px] uppercase pb-4 text-[#422727] font-medium">
+              {sectionName}
+            </p>
+            <div className="bg-gray-100 mb-4">
+              <div className="grid grid-cols-2 gap-1 py-10 px-4">
+                {products.slice(0, visibleCount).map((product) => (
+                  <NewArrivalsCard
+                    key={product.name}
+                    name={product.name}
+                    price={product.price}
+                    imageUrl={product.image}
+                  />
+                ))}
+              </div>
+              {products.length > initialVisibleCount[sectionName] && (
+                <Button
+                  onclick={() => toggleExpand(sectionName)}
+                  name={isExpanded ? "view less" : "view all"}
+                  styles="flex justify-center pb-10"
+                />
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
