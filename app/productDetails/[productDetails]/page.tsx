@@ -76,7 +76,7 @@ const ProductDetailsPage = () => {
         <textarea
           name=""
           id=""
-          className="border-2 border-[#422727] w-full"
+          className="border-2 w-full"
         ></textarea>
       </div>
 

@@ -6,7 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 const Contact = () => {
   return (
     <div className="bg-white p-6">
-      <div className="px-2 py-4 bg-gray-100 shadow-md text-[#422727] font-Eb">
+      <div className="px-2 py-4 bg-gray-100 shadow-md font-Eb">
         <div className="">
           <p className="uppercase underline underline-offset-4 pb-2">Shop</p>
           <p>Search</p>

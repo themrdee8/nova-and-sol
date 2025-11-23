@@ -131,7 +131,7 @@ const Navbar = () => {
           cartMenu ? "" : "hidden"
         }`}
       >
-        <div className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase text-[#422727]`}>
+        <div className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase`}>
           <div className="flex items-center justify-between py-4 px-2 text-[22px] border-b border-[#422727]/40">
             <p>Cart</p>
             <FaPlus className="rotate-45" onClick={toggleCartMenu} />

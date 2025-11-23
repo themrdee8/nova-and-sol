@@ -30,7 +30,7 @@ export default function Home() {
 
         <div className="bg-gray-100">
           <div className="bg-white flex justify-center p-8">
-            <p className="uppercase text-4xl font-serif mt-4 text-[#422727]">
+            <p className="uppercase text-4xl font-serif mt-4">
               new arrivals
             </p>
           </div>

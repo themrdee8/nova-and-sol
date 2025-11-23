@@ -9,7 +9,7 @@ const NewArrivalsCard = ({ imageUrl, name, price }: any) => {
       <Link href={`/productDetails/${name}`}>
         <Image src={imageUrl} alt={imageUrl} />
       </Link>
-      <div className="grid grid-cols-1 pt-1 pb-4 text-[#422727] font-Eb uppercase">
+      <div className="grid grid-cols-1 pt-1 pb-4 font-Eb uppercase">
         <p className="text-[15px]">{name}</p>
         <p className="text-[13px]">{price}</p>
         <Link

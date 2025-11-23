@@ -37,10 +37,10 @@ const CategoryPage = () => {
         />
 
         <div className="bg-white col-start-1 row-start-1 w-[380px] h-[180px] mt-6">
-          <p className="text-[#422727] text-[38px] font-Eb text-center uppercase pt-4 mt-6 mb-2">
+          <p className="text-[38px] font-Eb text-center uppercase pt-4 mt-6 mb-2">
             {title}
           </p>
-          <ul className="list-disc flex space-x-8 text-[#422727] font-serif justify-center uppercase ml-3">
+          <ul className="list-disc flex space-x-8 font-serif justify-center uppercase ml-3">
             {description.map((item) => (
               <li key={item}>{item}</li>
             ))}

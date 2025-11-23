@@ -30,7 +30,7 @@ const TheCharmBarPage = () => {
         return (
           <div key={sectionName}>
             <div className="flex items-center pt-14 pb-4">
-              <p className="font-Eb text-[23px] uppercase text-[#422727] font-medium">
+              <p className="font-Eb text-[23px] uppercase font-medium">
                 {sectionName}
               </p>
             </div>
