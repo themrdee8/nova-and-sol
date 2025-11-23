@@ -7,21 +7,21 @@ import Button from "./Button";
 import { useRouter } from "next/navigation";
 
 export const categories = [
-  { categoryName: "street wear", pageLink: "/streetWear", imageUrl: cat },
+  { categoryName: "street wear", pageLink: "category/streetWear", imageUrl: cat },
   {
     categoryName: "the sol strand",
-    pageLink: "/theSolStrand",
+    pageLink: "category/theSolStrand",
     imageUrl: cat,
   },
-  { categoryName: "amari", pageLink: "/amari", imageUrl: cat },
+  { categoryName: "amari", pageLink: "category/amari", imageUrl: cat },
   {
     categoryName: "the charm bar",
-    pageLink: "/theCharmBar",
+    pageLink: "category/theCharmBar",
     imageUrl: cat,
   },
   {
     categoryName: "the perfect find",
-    pageLink: "/thePerfectFind",
+    pageLink: "category/thePerfectFind",
     imageUrl: cat,
   },
 ];

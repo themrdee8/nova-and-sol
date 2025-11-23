@@ -29,10 +29,13 @@ const TheCharmBarPage = () => {
           : initialVisibleCount[sectionName] || 4;
         return (
           <div key={sectionName}>
-            <p className="font-Eb text-[23px] uppercase pb-4 text-[#422727] font-medium">
-              {sectionName}
-            </p>
-            <div className="bg-gray-100 mb-4">
+            <div className="flex items-center pt-14 pb-4">
+              <p className="font-Eb text-[23px] uppercase text-[#422727] font-medium">
+                {sectionName}
+              </p>
+            </div>
+
+            <div className="bg-gray-100 mb-8">
               <div className="grid grid-cols-2 gap-1 py-10 px-4">
                 {products.slice(0, visibleCount).map((product) => (
                   <NewArrivalsCard
