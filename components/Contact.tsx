@@ -16,16 +16,16 @@ const Contact = () => {
         </div>
         <p className="pt-4">Socials</p>
         <div className="flex justify-around py-2">
-          <div className="bg-[#422727] p-1 rounded-md">
+          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
             <FaInstagram size={20} className="text-[#E8d3a4]" />
           </div>
-          <div className="bg-[#422727] p-1 rounded-md">
+          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
             <FaPinterestP size={20} className="text-[#E8d3a4]" />
           </div>
-          <div className="bg-[#422727] p-1 rounded-md">
+          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
             <FaWhatsapp size={20} className="text-[#E8d3a4]" />
           </div>
-          <div className="bg-[#422727] p-1 rounded-md">
+          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
             <MdOutlineEmail size={20} className="text-[#E8d3a4]" />
           </div>
         </div>

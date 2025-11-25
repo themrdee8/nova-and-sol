@@ -58,10 +58,11 @@ const Navbar = () => {
         glassEffect ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
+      {/* Navbar */}
       <div onClick={toggleSidebar} className={``}>
         <RxHamburgerMenu
           size={20}
-          className={` ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
+          className={`active:scale-90 ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
         />
       </div>
       <div className="ml-2">
@@ -80,27 +81,28 @@ const Navbar = () => {
       <div className="flex space-x-4">
         <FiSearch
           size={20}
-          className={`${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
+          className={`active:scale-90 ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
           onClick={toggleSearch}
         />
         <MdOutlineShoppingCart
           size={20}
-          className={`${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
+          className={`active:scale-90 ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
           onClick={toggleCartMenu}
         />
       </div>
 
+      {/* Toggle Search bar */}
       <div
         className={`bg-white/40 fixed left-0 w-full h-full top-20 ${
           searchBar ? "" : "hidden"
         }`}
       >
         <div
-          className={`fixed bg-white left-0 w-full h-[14%] top-12 p-4 flex items-center justify-center`}
+          className={`fixed bg-white shadow-md left-0 w-full h-[14%] top-12 p-4 flex items-center justify-center`}
         >
           <div className="flex items-center justify-between bg-gray-100 w-[400px]">
             <div className=" p-3">
-              <FiSearch size={20} />
+              <FiSearch size={20} className="active:scale-90" />
             </div>
             <textarea
               className="place-content-center w-[300px]"
@@ -112,30 +114,37 @@ const Navbar = () => {
               onClick={toggleSearch}
               className={`p-3 transition-colors duration-300`}
             >
-              <IoIosClose size={20} />
+              <IoIosClose size={20} className="active:scale-90" />
             </div>
           </div>
         </div>
       </div>
 
+      {/* Toggle CartMenu */}
       <div
         className={`fixed top-0 left-0 right-0 bg-white/40 w-full h-full ${
           cartMenu ? "" : "hidden"
         }`}
       >
         <div
-          className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase`}
+          className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase flex flex-col transition-transform duration-300 ${
+            cartMenu ? "translate-x-0" : "translate-x-full"
+          }`}
         >
           <div className="flex items-center justify-between py-4 px-2 text-[22px] border-b border-[#422727]/40">
             <p>Cart</p>
-            <FaPlus className="rotate-45" onClick={toggleCartMenu} />
+            <FaPlus className="rotate-45 active:scale-90" onClick={toggleCartMenu} />
           </div>
-          <div className="flex mt-[350px] justify-center">
+          <div className="flex flex-1 items-center justify-center">
             <p>your cat is empty</p>
+          </div>
+          <div className="border-t py-4 text-center">
+            <p>Free delivery in Accra</p>
           </div>
         </div>
       </div>
 
+      {/* Toggle Sidebar */}
       <div
         className={`fixed left-0 top-0 w-full h-full bg-white/40 transition-opacity duration-300
           ${sidebar ? "" : "hidden"}`}
@@ -145,10 +154,12 @@ const Navbar = () => {
             ${sidebar ? " translate-x-0" : "-translate-x-full"}`}
         >
           <div className="flex justify-end" onClick={toggleSidebar}>
-            <FaArrowRightToBracket />
+            <FaArrowRightToBracket className="active:scale-90" />
           </div>
           <div className="pb-4 mb-4 pt-4 border-b">
-            <p className="">new arrivals</p>
+            <Link href="/category/newArrivals">
+              <p className="">new arrivals</p>
+            </Link>
           </div>
           <div className="items-center pb-6 mb-4 pt-4 border-b">
             <div className="flex items-center justify-between">
@@ -172,7 +183,7 @@ const Navbar = () => {
                 {categoryLink.map((item) => (
                   <Link
                     key={item.pageName}
-                    href={item.pageLink}
+                    href={`/category${item.pageLink}`}
                     onClick={toggleSidebar}
                   >
                     <li>{item.pageName}</li>
@@ -189,6 +200,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {/* Toggle Sidebar */}
     </div>
   );
 };
