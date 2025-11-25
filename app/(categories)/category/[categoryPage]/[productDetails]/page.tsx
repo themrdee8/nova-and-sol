@@ -1,10 +1,10 @@
 "use client";
-import { products } from "@/app/data/products";
+import { charmbar, productData } from "@/app/data/products";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
-import Image from "next/image";
-import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import Image, { StaticImageData } from "next/image";
+import { useParams, usePathname } from "next/navigation";
+import { useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { categories } from "@/components/CategoryCard";
 import Link from "next/link";
@@ -13,14 +13,25 @@ const ProductDetailsPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const params = useParams();
   const productName = params.productDetails;
+  const pathname = usePathname();
+  const categoryKey = pathname?.split("/category/")[1]?.split("/")[0];
 
-  const product = products.find(
-    (item) => item.name.toLowerCase() === productName
-  );
+  const items =
+    productData[categoryKey]?.find(
+      (item) => item.name.toLowerCase() === productName
+    ) ||
+    Object.values(charmbar)
+      .flat()
+      .find((product) => product.name.toLowerCase() === productName);
+  console.log("product:", items);
+  console.log("Available categories:", Object.keys(productData));
 
-  if (!product) return <div>Product not find</div>;
+  if (!items) return <div>Product not find</div>;
 
-  const images = [product?.image, product?.image2];
+  const images = [items?.image, items?.image2].filter(Boolean) as (
+    | StaticImageData
+    | string
+  )[];
 
   const previousImage = () => {
     setCurrentImage((previous) =>
@@ -39,7 +50,7 @@ const ProductDetailsPage = () => {
       <div className="pt-24 flex justify-center">
         <Image
           src={images[currentImage]}
-          alt={product.name}
+          alt={items.name}
           className="h-[450px] w-96 items-center object-cover rounded-4xl"
         />
       </div>
@@ -63,8 +74,8 @@ const ProductDetailsPage = () => {
         />
       </div>
       <div className="grid place-items-center text-[18px] uppercase font-Eb">
-        <p>{product.name}</p>
-        <p>{product.price}</p>
+        <p>{items.name}</p>
+        <p>{items.price}</p>
       </div>
 
       <div className="grid place-items-center">
@@ -73,11 +84,7 @@ const ProductDetailsPage = () => {
 
       <div className="py-14 px-4">
         <p className="pb-2 uppercase font-Eb font-medium">Additional comment</p>
-        <textarea
-          name=""
-          id=""
-          className="border-2 w-full"
-        ></textarea>
+        <textarea name="" id="" className="border-2 w-full"></textarea>
       </div>
 
       <div className="px-6">

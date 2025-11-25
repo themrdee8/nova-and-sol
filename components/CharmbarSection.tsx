@@ -43,6 +43,7 @@ const TheCharmBarPage = () => {
                     name={product.name}
                     price={product.price}
                     imageUrl={product.image}
+                    category="theCharmbar"
                   />
                 ))}
               </div>

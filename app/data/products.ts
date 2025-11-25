@@ -6,8 +6,8 @@ import { StaticImageData } from "next/image";
 export interface Product {
   name: string;
   price: string;
-  image: StaticImageData;
-  image2?: StaticImageData;
+  image?: StaticImageData | string;
+  image2?: StaticImageData | string;
 }
 
 export type ProductData = {
@@ -49,30 +49,30 @@ export const productData: ProductData = {
 
 export const charmbar = {
   bracelet: [
-    { name: "bracelet1", image: cat, price: "£100.00" },
-    { name: "bracelet2", image: cat, price: "£9.99" },
-    { name: "bracelet3", image: cat, price: "£16.00" },
+    { name: "bracelet1", image: cat, image2: banner, price: "£100.00" },
+    { name: "bracelet2", image: cat, image2: banner, price: "£9.99" },
+    { name: "bracelet3", image: cat, image2: banner, price: "£16.00" },
   ],
 
   necklace: [
-    { name: "necklace1", image: cat, price: "£9.00" },
-    { name: "necklace2", image: cat, price: "£3.00" },
-    { name: "necklace3", image: cat, price: "£44.00" },
-    { name: "necklace4", image: cat, price: "£44.00" },
-    { name: "necklace5", image: cat, price: "£44.00" },
+    { name: "necklace1", image: cat, image2: banner, price: "£9.00" },
+    { name: "necklace2", image: cat, image2: banner, price: "£3.00" },
+    { name: "necklace3", image: cat, image2: banner, price: "£44.00" },
+    { name: "necklace4", image: cat, image2: banner, price: "£44.00" },
+    { name: "necklace5", image: cat, image2: banner, price: "£44.00" },
   ],
 
   charms: [
-    { name: "charms", image: cat, price: "£4.00" },
-    { name: "star", image: cat, price: "£56.00" },
-    { name: "mooon", image: cat, price: "£12.00" },
-    { name: "moon", image: cat, price: "£12.00" },
-    { name: "sun", image: cat, price: "£12.00" },
-    { name: "gold", image: cat, price: "£12.00" },
-    { name: "fish", image: cat, price: "£12.00" },
-    { name: "lion", image: cat, price: "£12.00" },
-    { name: "googoo", image: cat, price: "£12.00" },
-    { name: "mint", image: cat, price: "£12.00" },
+    { name: "charms", image: cat, image2: banner, price: "£4.00" },
+    { name: "star", image: cat, image2: banner, price: "£56.00" },
+    { name: "mooon", image: cat, image2: banner, price: "£12.00" },
+    { name: "moon", image: cat, image2: banner, price: "£12.00" },
+    { name: "sun", image: cat, image2: banner, price: "£12.00" },
+    { name: "gold", image: cat, image2: banner, price: "£12.00" },
+    { name: "fish", image: cat, image2: banner, price: "£12.00" },
+    { name: "lion", image: cat, image2: banner, price: "£12.00" },
+    { name: "googoo", image: cat, image2: banner, price: "£12.00" },
+    { name: "mint", image: cat, image2: banner, price: "£12.00" },
   ],
 };
 

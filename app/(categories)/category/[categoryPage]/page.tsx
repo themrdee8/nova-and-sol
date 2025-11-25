@@ -59,6 +59,7 @@ const CategoryPage = () => {
                   imageUrl={product.image}
                   name={product.name}
                   price={product.price}
+                  category={categoryKey}
                 />
               ))}
             </div>

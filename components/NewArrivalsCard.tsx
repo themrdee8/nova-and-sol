@@ -1,13 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import React from "react";
 
-const NewArrivalsCard = ({ imageUrl, name, price }: any) => {
+interface NewArrivalsCardProps {
+  name: string;
+  price: string;
+  imageUrl: StaticImageData | string;
+  category: string;
+}
+
+const NewArrivalsCard = ({
+  imageUrl,
+  name,
+  price,
+  category,
+}: NewArrivalsCardProps) => {
   return (
     <div className="p-0">
-      <Link href={`/productDetails/${name}`}>
-        <Image src={imageUrl} alt={imageUrl} />
+      <Link href={`/category/${category}/${name}`}>
+        <Image src={imageUrl} alt={name} />
       </Link>
       <div className="grid grid-cols-1 pt-1 pb-4 font-Eb uppercase">
         <p className="text-[15px]">{name}</p>

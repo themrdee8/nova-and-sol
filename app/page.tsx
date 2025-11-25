@@ -8,12 +8,14 @@ import CategoryCard from "@/components/CategoryCard";
 import Contact from "@/components/Contact";
 import { productData } from "./data/products";
 import { useRouter } from "next/navigation";
+import fallbackImage from "@/public/images/cat.jpg";
 
 export default function Home() {
   const router = useRouter();
   const newArrivals = () => {
     router.push("category/newArrivals");
   };
+
   return (
     <div className="">
       <main className="">
@@ -30,17 +32,16 @@ export default function Home() {
 
         <div className="bg-gray-100">
           <div className="bg-white flex justify-center p-8">
-            <p className="uppercase text-4xl font-serif mt-4">
-              new arrivals
-            </p>
+            <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
           </div>
           <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
             {(productData["newArrivals"] ?? []).slice(0, 4).map((product) => (
               <NewArrivalsCard
                 key={product.name}
-                imageUrl={product.image}
+                imageUrl={product.image || fallbackImage}
                 name={product.name}
                 price={product.price}
+                category="newArrivals"
               />
             ))}
           </div>

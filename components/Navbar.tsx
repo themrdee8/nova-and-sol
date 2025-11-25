@@ -55,45 +55,37 @@ const Navbar = () => {
   return (
     <div
       className={`flex justify-between transition-all duration-300 p-2.5 items-center fixed w-full ${
-        glassEffect
-          ? "bg-white shadow-md"
-          : "bg-transparent"
+        glassEffect ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
       <div onClick={toggleSidebar} className={``}>
         <RxHamburgerMenu
           size={20}
-          className={` ${
-            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
-          }`}
+          className={` ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
         />
       </div>
       <div className="ml-2">
         <Link href="/">
-        <p
-          className={`font-Cinzel transition-all duration-300 ${
-            glassEffect
-              ? "text-[#422727] text-[20px]"
-              : "text-[#E8d3a4] text-[22px]"
-          }`}
-        >
-          Nova & Sol
-        </p>
+          <p
+            className={`font-Cinzel transition-all duration-300 ${
+              glassEffect
+                ? "text-[#422727] text-[20px]"
+                : "text-[#E8d3a4] text-[22px]"
+            }`}
+          >
+            Nova & Sol
+          </p>
         </Link>
       </div>
       <div className="flex space-x-4">
         <FiSearch
           size={20}
-          className={`${
-            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
-          }`}
+          className={`${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
           onClick={toggleSearch}
         />
         <MdOutlineShoppingCart
           size={20}
-          className={`${
-            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
-          }`}
+          className={`${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
           onClick={toggleCartMenu}
         />
       </div>
@@ -131,7 +123,9 @@ const Navbar = () => {
           cartMenu ? "" : "hidden"
         }`}
       >
-        <div className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase`}>
+        <div
+          className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase`}
+        >
           <div className="flex items-center justify-between py-4 px-2 text-[22px] border-b border-[#422727]/40">
             <p>Cart</p>
             <FaPlus className="rotate-45" onClick={toggleCartMenu} />
