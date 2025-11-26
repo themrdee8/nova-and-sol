@@ -26,8 +26,6 @@ export default function Home() {
             alt="banner"
             className="h-[600px] object-cover col-start-1 row-start-1"
           />
-
-          <Button name="Shop now" styles="col-start-1 row-start-1 mt-[550px]" />
         </div>
 
         <div className="bg-gray-100">

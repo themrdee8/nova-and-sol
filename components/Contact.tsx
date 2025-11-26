@@ -2,6 +2,8 @@ import React from "react";
 import Button from "./Button";
 import { FaInstagram, FaPinterestP, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { BsTiktok } from "react-icons/bs";
+import Link from "next/link";
 
 const Contact = () => {
   return (
@@ -9,25 +11,41 @@ const Contact = () => {
       <div className="px-2 py-4 bg-gray-100 shadow-md font-Eb">
         <div className="">
           <p className="uppercase underline underline-offset-4 pb-2">Shop</p>
-          <p>Search</p>
+          <p>About Us</p>
           <p>Shipping / Deliveries</p>
           <p>FAQs</p>
-          <p>Contact Information</p>
         </div>
         <p className="pt-4">Socials</p>
         <div className="flex justify-around py-2">
-          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
-            <FaInstagram size={20} className="text-[#E8d3a4]" />
-          </div>
-          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
-            <FaPinterestP size={20} className="text-[#E8d3a4]" />
-          </div>
-          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
-            <FaWhatsapp size={20} className="text-[#E8d3a4]" />
-          </div>
-          <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
-            <MdOutlineEmail size={20} className="text-[#E8d3a4]" />
-          </div>
+          <Link href="https://www.instagram.com/novaandsolatilier/">
+            <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
+              <FaInstagram size={20} className="text-[#E8d3a4]" />
+            </div>
+          </Link>
+
+          <Link href="https://pin.it/7Dp9JWEvr/">
+            <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
+              <FaPinterestP size={20} className="text-[#E8d3a4]" />
+            </div>
+          </Link>
+
+          <Link href="https://wa.me/0202357800/">
+            <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
+              <FaWhatsapp size={20} className="text-[#E8d3a4]" />
+            </div>
+          </Link>
+
+          <Link href="mailto:shopnovaandsol@gmail.com">
+            <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
+              <MdOutlineEmail size={20} className="text-[#E8d3a4]" />
+            </div>
+          </Link>
+
+          <Link href="https://www.tiktok.com/@nova.sol.atelier/">
+            <div className="bg-[#422727] p-1 rounded-md active:scale-90 transition duration-300 ease-in">
+              <BsTiktok size={20} className="text-[#E8d3a4]" />
+            </div>
+          </Link>
         </div>
         <div className="pt-4">
           <p>Sign up to our Emails</p>
