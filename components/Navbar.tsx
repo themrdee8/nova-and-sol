@@ -15,8 +15,8 @@ const Navbar = () => {
   const [searchBar, setSearchBar] = useState(false);
   const [cartMenu, setCartMenu] = useState(false);
   const pathname = usePathname();
-  const isProductPage = pathname.startsWith("/productDetails/");
-
+  const isProductPage = pathname.startsWith(`/category/`);
+  
   const categoryLink = [
     { pageName: "streetwear", pageLink: "/streetWear" },
     { pageName: "the sol strand", pageLink: "/theSolStrand" },
@@ -24,6 +24,7 @@ const Navbar = () => {
     { pageName: "the charm bar", pageLink: "/theCharmBar" },
     { pageName: "the perfect find", pageLink: "/thePerfectFind" },
   ];
+  
 
   useEffect(() => {
     const handleNavBg = () => {
@@ -62,7 +63,9 @@ const Navbar = () => {
       <div onClick={toggleSidebar} className={``}>
         <RxHamburgerMenu
           size={20}
-          className={`active:scale-90 ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
+          className={`active:scale-90 ${
+            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
+          }`}
         />
       </div>
       <div className="ml-2">
@@ -81,12 +84,16 @@ const Navbar = () => {
       <div className="flex space-x-4">
         <FiSearch
           size={20}
-          className={`active:scale-90 ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
+          className={`active:scale-90 ${
+            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
+          }`}
           onClick={toggleSearch}
         />
         <MdOutlineShoppingCart
           size={20}
-          className={`active:scale-90 ${glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"}`}
+          className={`active:scale-90 ${
+            glassEffect ? "text-[#422727]" : "text-[#E8d3a4]"
+          }`}
           onClick={toggleCartMenu}
         />
       </div>
@@ -133,7 +140,10 @@ const Navbar = () => {
         >
           <div className="flex items-center justify-between py-4 px-2 text-[22px] border-b border-[#422727]/40">
             <p>Cart</p>
-            <FaPlus className="rotate-45 active:scale-90" onClick={toggleCartMenu} />
+            <FaPlus
+              className="rotate-45 active:scale-90"
+              onClick={toggleCartMenu}
+            />
           </div>
           <div className="flex flex-1 items-center justify-center">
             <p>your cat is empty</p>
@@ -194,9 +204,6 @@ const Navbar = () => {
           </div>
           <div className="py-4 pb-4 mb-4 pt-4 border-b">
             <p>about us</p>
-          </div>
-          <div className="pb-4 mb-4 pt-4 border-b">
-            <p>contact page</p>
           </div>
         </div>
       </div>

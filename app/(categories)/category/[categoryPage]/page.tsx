@@ -36,7 +36,7 @@ const CategoryPage = () => {
           className="h-[260px] object-cover col-start-1 row-start-1"
         />
 
-        <div className="bg-white col-start-1 row-start-1 w-[380px] h-[180px] mt-6">
+        <div className="bg-white col-start-1 row-start-1 w-[380px] h-[180px] mt-12">
           <p className="text-[38px] font-Eb text-center uppercase pt-4 mt-6 mb-2">
             {title}
           </p>
