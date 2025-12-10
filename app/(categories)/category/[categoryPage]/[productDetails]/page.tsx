@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { charmbar, productData } from "@/app/data/products";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
-import Image, { StaticImageData } from "next/image";
-import { useParams, usePathname } from "next/navigation";
-import { useState } from "react";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { categories } from "@/components/CategoryCard";
 import Link from "next/link";
@@ -12,26 +12,49 @@ import Link from "next/link";
 const ProductDetailsPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const params = useParams();
-  const productName = params.productDetails;
-  const pathname = usePathname();
-  const categoryKey = pathname?.split("/category/")[1]?.split("/")[0];
+  // const productName = params.productDetails;
+  const safeName = String(params.productDetails);
 
-  const items =
-    productData[categoryKey]?.find(
-      (item) => item.name.toLowerCase() === productName
-    ) ||
-    Object.values(charmbar)
-      .flat()
-      .find((product) => product.name.toLowerCase() === productName);
-  console.log("product:", items);
-  console.log("Available categories:", Object.keys(productData));
+  // For supabase
+  const [productDetails, setProductDetails] = useState<any | null>(null);
+  const [isLoadingProductDetails, setIsLoadingProductDetails] =
+    useState<boolean>(false);
+  const [productDetailsError, setProductDetailsError] = useState<string | null>(
+    null
+  );
 
-  if (!items) return <div>Product not find</div>;
+  // fetch product details by name
+  useEffect(() => {
+    async function loadProductDetails() {
+      if (!safeName) return;
+      setIsLoadingProductDetails(true);
+      setProductDetailsError(null);
 
-  const images = [items?.image, items?.image2].filter(Boolean) as (
-    | StaticImageData
-    | string
-  )[];
+      try {
+        const response = await fetch(
+          `/api/product?slug=${encodeURIComponent(safeName)}`
+        );
+        const json = await response.json();
+        setProductDetails(json.product || null);
+      } catch (error: any) {
+        setProductDetailsError(error.message || "Failed to fetch product");
+      } finally {
+        setIsLoadingProductDetails(false);
+      }
+    }
+
+    loadProductDetails();
+  }, [safeName]);
+
+  if (isLoadingProductDetails) return <div>Loading product...</div>;
+  if (productDetailsError) return <div>Error: {productDetailsError}</div>;
+  if (!productDetails) return <div>Product not find</div>;
+
+  const items = productDetails;
+  const images = [
+    items?.image_url || items?.image,
+    items?.image_url_2 || items?.image2,
+  ].filter(Boolean) as (string | never)[];
 
   const previousImage = () => {
     setCurrentImage((previous) =>
@@ -52,6 +75,8 @@ const ProductDetailsPage = () => {
           src={images[currentImage]}
           alt={items.name}
           className="h-[450px] w-96 items-center object-cover rounded-4xl"
+          width={700}
+          height={20}
         />
       </div>
       <div className="flex space-x-2 text-3xl items-center justify-center pt-4">
@@ -75,7 +100,7 @@ const ProductDetailsPage = () => {
       </div>
       <div className="grid place-items-center text-[18px] uppercase font-Eb">
         <p>{items.name}</p>
-        <p>{items.price}</p>
+        <p>ghs {items.price}</p>
       </div>
 
       <div className="grid place-items-center">

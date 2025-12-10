@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
-import { charmbar } from "@/app/data/products";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/components/Button";
 
 const TheCharmBarPage = () => {
@@ -13,6 +13,38 @@ const TheCharmBarPage = () => {
     charms: 6,
   };
 
+  const [charmbarSectionsState, setCharmbarSectionsState] = useState<Record<
+    string,
+    any[]
+  > | null>(null);
+  const [isLoadingCharmbarState, setIsLoadingCharmbarState] =
+    useState<boolean>(false);
+  const [charmbarErrorState, setCharmbarErrorState] = useState<string | null>(
+    null
+  );
+
+  // Fetch charmbar section from API
+  useEffect(() => {
+    async function loadCharmbarSections() {
+      setIsLoadingCharmbarState(true);
+      setCharmbarErrorState(null);
+
+      try {
+        const response = await fetch(`/api/products?charmbar=1`);
+        const json = await response.json();
+
+        setCharmbarSectionsState(json.charmbarSections || {});
+      } catch (error: any) {
+        setCharmbarErrorState(
+          error.message || "Failed to load charmbar products"
+        );
+      } finally {
+        setIsLoadingCharmbarState(false);
+      }
+    }
+    loadCharmbarSections();
+  }, []);
+
   const toggleExpand = (sectionName: string) => {
     setExpanded((previous) => ({
       ...previous,
@@ -20,9 +52,21 @@ const TheCharmBarPage = () => {
     }));
   };
 
+  if (isLoadingCharmbarState) {
+    return <p className="py-10 text-center">Loading charmbar products...</p>;
+  }
+
+  if (charmbarErrorState) {
+    return <p className="py-10 text-center">Error: {charmbarErrorState}</p>;
+  }
+
+  if (!charmbarSectionsState) {
+    return <p className="py-10 text-center">No charmbar products found.</p>;
+  }
+
   return (
     <div className="grid gap-1 py-10 px-4">
-      {Object.entries(charmbar).map(([sectionName, products]) => {
+      {Object.entries(charmbarSectionsState).map(([sectionName, products]) => {
         const isExpanded = expanded[sectionName];
         const visibleCount = isExpanded
           ? products.length
@@ -42,8 +86,9 @@ const TheCharmBarPage = () => {
                     key={product.name}
                     name={product.name}
                     price={product.price}
-                    imageUrl={product.image}
-                    category="theCharmbar"
+                    imageUrl={product.image_url}
+                    slug={product.slug}
+                    category="theCharmBar"
                   />
                 ))}
               </div>

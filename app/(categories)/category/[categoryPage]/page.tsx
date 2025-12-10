@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Contact from "@/components/Contact";
@@ -6,9 +7,11 @@ import Image from "next/image";
 import banner from "@/public/images/banner.jpg";
 import { categoryConfig } from "../../categoryConfig";
 import { usePathname } from "next/navigation";
-import { productData } from "@/app/data/products";
+// import { productData } from "@/app/data/products";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import TheCharmBarPage from "@/components/CharmbarSection";
+import { useEffect, useState } from "react";
+// import { getCategoryProducts } from "./fetchCategoryProducts";
 
 const CategoryPage = () => {
   const pathname = usePathname();
@@ -16,6 +19,48 @@ const CategoryPage = () => {
   const category = categoryConfig[categoryKey as keyof typeof categoryConfig];
   const title = category?.title || "";
   const description = category?.description || [];
+
+  // Backend data call for products
+  const [productsForCategory, setProductsForCategory] = useState<any[] | null>(
+    null
+  );
+  const [charmbarSectionsState, setCharmbarSectionsState] = useState<Record<
+    string,
+    any[]
+  > | null>(null);
+  const [isLoadingProducts, setIsLoadingProducts] = useState<boolean>(false);
+  const [fetchProductsError, setFetchProductsError] = useState<string | null>(
+    null
+  );
+
+  useEffect(() => {
+    async function loadProducts() {
+      if (!categoryKey) return;
+      setIsLoadingProducts(true);
+      setFetchProductsError(null);
+
+      try {
+        if (categoryKey === "theCharmBar") {
+          // fetch charmbar sections
+          const response = await fetch("/api/products?charmbar=1");
+          const json = await response.json();
+          setCharmbarSectionsState(json.charmbarSections || {});
+        } else {
+          const response = await fetch(
+            `/api/products?category=${encodeURIComponent(categoryKey)}`
+          );
+          const json = await response.json();
+          setProductsForCategory(json.products || []);
+        }
+      } catch (error: any) {
+        setFetchProductsError(error.message || "Failed to fetch products");
+      } finally {
+        setIsLoadingProducts(false);
+      }
+    }
+
+    loadProducts();
+  }, [categoryKey]);
 
   if (!category) {
     return (
@@ -51,15 +96,20 @@ const CategoryPage = () => {
         <TheCharmBarPage />
       ) : (
         <>
-          {productData[categoryKey] && productData[categoryKey].length ? (
+          {isLoadingProducts ? (
+            <p>Loading...</p>
+          ) : fetchProductsError ? (
+            <p>Error loading products: {fetchProductsError}</p>
+          ) : productsForCategory && productsForCategory.length ? (
             <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
-              {(productData[categoryKey] || []).map((product: any) => (
+              {productsForCategory.map((product: any) => (
                 <NewArrivalsCard
                   key={product.name}
-                  imageUrl={product.image}
+                  imageUrl={product.image_url || product.image}
                   name={product.name}
-                  price={product.price}
+                  price={`GHS ${product.price}`}
                   category={categoryKey}
+                  slug={product.slug}
                 />
               ))}
             </div>
