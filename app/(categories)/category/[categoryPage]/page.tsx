@@ -45,7 +45,13 @@ const CategoryPage = () => {
           const response = await fetch("/api/products?charmbar=1");
           const json = await response.json();
           setCharmbarSectionsState(json.charmbarSections || {});
+        } else if (categoryKey === "newArrivals") {
+          // fetch new arrivals
+          const response = await fetch("/api/new-arrivals");
+          const json = await response.json();
+          setProductsForCategory(json.products ?? []);
         } else {
+          //fetch categories
           const response = await fetch(
             `/api/products?category=${encodeURIComponent(categoryKey)}`
           );
@@ -107,7 +113,7 @@ const CategoryPage = () => {
                   key={product.name}
                   imageUrl={product.image_url || product.image}
                   name={product.name}
-                  price={`GHS ${product.price}`}
+                  price={product.price}
                   category={categoryKey}
                   slug={product.slug}
                 />

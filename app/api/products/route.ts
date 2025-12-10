@@ -15,14 +15,12 @@ export const GET = async (request: Request) => {
     // If requesting theCharmBar sections
     if (charmbar === "1") {
       const charmbarSections = await fetchCharmbarSections();
-      console.log("Charmbarsections: ", charmbarSections);
       return NextResponse.json({ charmbarSections });
     }
 
     // Regular category products
     if (category) {
       const products = await fetchProductsByCategory(category);
-      console.log("Products: ", products);
       return NextResponse.json({ products });
     }
 

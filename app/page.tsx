@@ -6,15 +6,27 @@ import Button from "@/components/Button";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import CategoryCard from "@/components/CategoryCard";
 import Contact from "@/components/Contact";
-import { productData } from "./data/products";
 import { useRouter } from "next/navigation";
 import fallbackImage from "@/public/images/cat.jpg";
+import { useEffect, useState } from "react";
+import { ProductRow } from "@/lib/productService";
 
 export default function Home() {
   const router = useRouter();
   const newArrivals = () => {
     router.push("category/newArrivals");
   };
+
+  // For supabse new arrivals fetch
+  const [newArrival, setNewArrival] = useState<ProductRow[]>([]);
+  useEffect(() => {
+    async function loadNewArrivals() {
+      const response = await fetch("/api/new-arrivals");
+      const json = await response.json();
+      setNewArrival(json.products ?? []);
+    }
+    loadNewArrivals();
+  }, []);
 
   return (
     <div className="">
@@ -33,12 +45,13 @@ export default function Home() {
             <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
           </div>
           <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
-            {(productData["newArrivals"] ?? []).slice(0, 4).map((product) => (
+            {newArrival.slice(0, 4).map((product) => (
               <NewArrivalsCard
-                key={product.name}
-                imageUrl={product.image || fallbackImage}
+                key={product.id}
+                imageUrl={product.image_url || fallbackImage}
                 name={product.name}
                 price={product.price}
+                slug={product.slug}
                 category="newArrivals"
               />
             ))}

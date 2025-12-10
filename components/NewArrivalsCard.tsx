@@ -3,7 +3,7 @@ import Link from "next/link";
 
 interface NewArrivalsCardProps {
   name: string;
-  price: string;
+  price: number;
   imageUrl: StaticImageData | string;
   category: string;
   slug: string;

@@ -117,7 +117,7 @@ const ProductDetailsPage = () => {
           Shop
         </p>
         {categories.map((category) => (
-          <Link key={category.categoryName} href={category.pageLink}>
+          <Link key={category.categoryName} href={`/${category.pageLink}`}>
             <Button name={category.categoryName} styles="pb-4" />
           </Link>
         ))}
