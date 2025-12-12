@@ -88,6 +88,7 @@ const TheCharmBarPage = () => {
                     price={product.price}
                     imageUrl={product.image_url}
                     slug={product.slug}
+                    quantity={product.quantity}
                     category="theCharmBar"
                   />
                 ))}

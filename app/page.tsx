@@ -52,6 +52,7 @@ export default function Home() {
                 name={product.name}
                 price={product.price}
                 slug={product.slug}
+                quantity={product.quantity}
                 category="newArrivals"
               />
             ))}

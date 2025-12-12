@@ -57,7 +57,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex justify-between transition-all duration-300 p-2.5 items-center fixed w-full ${
+      className={`flex justify-between transition-all duration-300 p-2.5 items-center fixed w-full z-50 ${
         glassEffect ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >

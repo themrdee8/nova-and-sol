@@ -116,6 +116,7 @@ const CategoryPage = () => {
                   price={product.price}
                   category={categoryKey}
                   slug={product.slug}
+                  quantity={product.quantity}
                 />
               ))}
             </div>
