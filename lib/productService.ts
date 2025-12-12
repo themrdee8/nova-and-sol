@@ -6,6 +6,7 @@ export type ProductRow = {
   name: string;
   price: number;
   slug: string;
+  new_arrival: boolean;
   description: string | null;
   image_url: string | null;
   image_url_2: string | null;

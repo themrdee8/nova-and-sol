@@ -7,6 +7,7 @@ import { FaPlus, FaArrowRightToBracket } from "react-icons/fa6";
 import { IoIosClose } from "react-icons/io";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
   const [scrollBg, setScrollBg] = useState(false);
@@ -16,7 +17,9 @@ const Navbar = () => {
   const [cartMenu, setCartMenu] = useState(false);
   const pathname = usePathname();
   const isProductPage = pathname.startsWith(`/category/`);
-  
+
+  const { user, openAuthModal, logout } = useAuth();
+
   const categoryLink = [
     { pageName: "streetwear", pageLink: "/streetWear" },
     { pageName: "the sol strand", pageLink: "/theSolStrand" },
@@ -24,7 +27,6 @@ const Navbar = () => {
     { pageName: "the charm bar", pageLink: "/theCharmBar" },
     { pageName: "the perfect find", pageLink: "/thePerfectFind" },
   ];
-  
 
   useEffect(() => {
     const handleNavBg = () => {
@@ -163,9 +165,25 @@ const Navbar = () => {
           className={` fixed left-0 top-0 w-[80%] uppercase font-medium font-Eb h-full bg-white p-4 transform transition-transform duration-500 ease-in-out
             ${sidebar ? " translate-x-0" : "-translate-x-full"}`}
         >
-          <div className="flex justify-end" onClick={toggleSidebar}>
+          {user ? (
+            <div className="flex justify-end">
+              <p>{user.user_metadata?.full_name || user.email}</p>
+              <FaArrowRightToBracket
+                className="active:scale-90"
+                onClick={toggleSidebar}
+              />
+            </div>
+          ) : (
+            <div className="flex justify-end">
+              <FaArrowRightToBracket
+                className="active:scale-90"
+                onClick={toggleSidebar}
+              />
+            </div>
+          )}
+          {/* <div className="flex justify-end" onClick={toggleSidebar}>
             <FaArrowRightToBracket className="active:scale-90" />
-          </div>
+          </div> */}
           <div className="pb-4 mb-4 pt-4 border-b">
             <Link href="/category/newArrivals">
               <p className="">new arrivals</p>
@@ -205,6 +223,17 @@ const Navbar = () => {
           <div className="py-4 pb-4 mb-4 pt-4 border-b">
             <p>about us</p>
           </div>
+          {user ? (
+            <div className="py-4 pb-4 mb-4 pt-4 border-b">
+              <p onClick={logout}>Logout</p>
+            </div>
+          ) : (
+            <div className="py-4 pb-4 mb-4 pt-4 border-b">
+              <p className="cursor-pointer" onClick={openAuthModal}>
+                Login / sign up
+              </p>
+            </div>
+          )}
         </div>
       </div>
       {/* Toggle Sidebar */}
