@@ -45,3 +45,19 @@ export const getCartItems = async (userId: string) => {
   console.log(data);
   return data;
 };
+
+export const updateCartItemQuantity = async (
+  cartItemId: string,
+  newQuantity: number
+) => {
+  if (newQuantity < 1) return;
+
+  const { error } = await supabaseClient
+    .from("cart_items")
+    .update({ quantity: newQuantity })
+    .eq("id", cartItemId);
+
+  if (error) {
+    console.error("Error updating quantity:", error);
+  }
+};

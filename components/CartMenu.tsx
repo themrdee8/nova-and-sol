@@ -6,7 +6,8 @@ import banner from "@/public/images/banner.jpg";
 import Button from "./Button";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
-import { getCartItems } from "@/lib/cartService";
+import { getCartItems, updateCartItemQuantity } from "@/lib/cartService";
+import { useCart } from "@/context/CartContext";
 
 interface CartMenuProps {
   openCart: () => void;
@@ -15,6 +16,7 @@ interface CartMenuProps {
 
 const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
   const { user } = useAuth();
+  const { refreshKey, refreshCart } = useCart();
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +31,18 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
     };
 
     loadCart();
-  }, [isOpen, user]);
+  }, [isOpen, user, refreshKey]);
+
+  const handleIncrease = async (item: any) => {
+    await updateCartItemQuantity(item.id, item.quantity + 1);
+    refreshCart();
+  };
+
+  const handleDecrease = async (item: any) => {
+    if (item.quantity === 1) return;
+    await updateCartItemQuantity(item.id, item.quantity - 1);
+    refreshCart();
+  };
 
   const cartTotal = cartItems.reduce(
     (sum, item) => sum + item.quantity * item.products.price,
@@ -91,12 +104,18 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
                     <IoClose className="text-[18px]" />
                   </div>
                   <div className="flex justify-between pt-2">
-                    <p>{item.quantity}</p>
+                    <p>quantity: {item.quantity}</p>
                     <div className="flex space-x-2">
-                      <div className="rounded-full active:scale-90 bg-[#E8d3a4] backdrop-blur-sm h-5 w-5 grid place-items-center transition duration-150 ease-in">
+                      <div
+                        onClick={() => handleDecrease(item)}
+                        className="rounded-full active:scale-90 bg-[#E8d3a4] backdrop-blur-sm h-5 w-5 grid place-items-center transition duration-150 ease-in"
+                      >
                         <FaMinus />{" "}
                       </div>
-                      <div className="rounded-full active:scale-90 bg-[#E8d3a4] backdrop-blur-sm h-5 w-5 grid place-items-center transition duration-150 ease-in">
+                      <div
+                        onClick={() => handleIncrease(item)}
+                        className="rounded-full active:scale-90 bg-[#E8d3a4] backdrop-blur-sm h-5 w-5 grid place-items-center transition duration-150 ease-in"
+                      >
                         <FaPlus />
                       </div>
                     </div>

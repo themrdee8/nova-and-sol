@@ -1,4 +1,5 @@
 import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
 import { addToCart } from "@/lib/cartService";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -13,10 +14,9 @@ interface NewArrivalsCardProps {
   quantity: number;
 }
 
-const NewArrivalsCard = (
-  { ...props }: NewArrivalsCardProps
-) => {
+const NewArrivalsCard = ({ ...props }: NewArrivalsCardProps) => {
   const { user, openAuthModal } = useAuth();
+  const { refreshCart } = useCart();
 
   const handleAddToCart = async () => {
     if (!user) {
@@ -24,8 +24,9 @@ const NewArrivalsCard = (
       return;
     }
 
-    console.log(props.id);
     await addToCart(user.id, props.id);
+
+    refreshCart();
   };
 
   return (
