@@ -48,6 +48,7 @@ export default function Home() {
             {newArrival.slice(0, 4).map((product) => (
               <NewArrivalsCard
                 key={product.id}
+                id={product.id}
                 imageUrl={product.image_url || fallbackImage}
                 name={product.name}
                 price={product.price}

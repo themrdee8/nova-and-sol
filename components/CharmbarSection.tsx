@@ -84,6 +84,7 @@ const TheCharmBarPage = () => {
                 {products.slice(0, visibleCount).map((product) => (
                   <NewArrivalsCard
                     key={product.name}
+                    id={product.id}
                     name={product.name}
                     price={product.price}
                     imageUrl={product.image_url}

@@ -111,6 +111,7 @@ const CategoryPage = () => {
               {productsForCategory.map((product: any) => (
                 <NewArrivalsCard
                   key={product.name}
+                  id={product.id}
                   imageUrl={product.image_url || product.image}
                   name={product.name}
                   price={product.price}

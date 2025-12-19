@@ -8,6 +8,7 @@ import { IoIosClose } from "react-icons/io";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import CartMenu from "./CartMenu";
 
 const Navbar = () => {
   const [scrollBg, setScrollBg] = useState(false);
@@ -130,31 +131,7 @@ const Navbar = () => {
       </div>
 
       {/* Toggle CartMenu */}
-      <div
-        className={`fixed top-0 left-0 right-0 bg-white/40 w-full h-full ${
-          cartMenu ? "" : "hidden"
-        }`}
-      >
-        <div
-          className={`fixed top-0 right-0 bg-white w-[80%] h-full font-Eb uppercase flex flex-col transition-transform duration-300 ${
-            cartMenu ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="flex items-center justify-between py-4 px-2 text-[22px] border-b border-[#422727]/40">
-            <p>Cart</p>
-            <FaPlus
-              className="rotate-45 active:scale-90"
-              onClick={toggleCartMenu}
-            />
-          </div>
-          <div className="flex flex-1 items-center justify-center">
-            <p>your cat is empty</p>
-          </div>
-          <div className="border-t py-4 text-center">
-            <p>Free delivery in Accra</p>
-          </div>
-        </div>
-      </div>
+      <CartMenu openCart={toggleCartMenu} isOpen={cartMenu} />
 
       {/* Toggle Sidebar */}
       <div

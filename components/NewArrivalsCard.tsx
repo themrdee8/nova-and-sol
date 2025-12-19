@@ -1,8 +1,10 @@
 import { useAuth } from "@/context/AuthContext";
+import { addToCart } from "@/lib/cartService";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 interface NewArrivalsCardProps {
+  id: string;
   name: string;
   price: number;
   imageUrl: StaticImageData | string;
@@ -11,26 +13,34 @@ interface NewArrivalsCardProps {
   quantity: number;
 }
 
-const NewArrivalsCard = ({ ...props }: NewArrivalsCardProps) => {
+const NewArrivalsCard = (
+  { ...props }: NewArrivalsCardProps
+) => {
   const { user, openAuthModal } = useAuth();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!user) {
       openAuthModal();
       return;
     }
 
-    // TODO: add addToCart logic later
+    console.log(props.id);
+    await addToCart(user.id, props.id);
   };
 
   return (
     <div className="p-0">
       <Link href={`/category/${props.category}/${props.slug}`}>
-      <div className="relative inline-block">
-        <Image src={props.imageUrl} alt={props.name} width={700} height={20} />
-        <div className="rounded-full bg-white h-7 w-7 font-Eb text-[17px] flex items-center justify-center absolute top-2 right-2">
-          <p className="font-bold">{props.quantity}</p>
-        </div>
+        <div className="relative inline-block">
+          <Image
+            src={props.imageUrl}
+            alt={props.name}
+            width={700}
+            height={20}
+          />
+          <div className="rounded-full bg-white/30 backdrop-blur-sm h-7 w-7 font-Eb text-[17px] flex items-center justify-center absolute top-2 right-2">
+            <p className="font-bold text-[#E8d3a4]">{props.quantity}</p>
+          </div>
         </div>
       </Link>
       <div className="grid grid-cols-1 pt-1 pb-4 font-Eb text-[11px] uppercase">
