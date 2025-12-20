@@ -6,7 +6,11 @@ import banner from "@/public/images/banner.jpg";
 import Button from "./Button";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
-import { getCartItems, updateCartItemQuantity } from "@/lib/cartService";
+import {
+  getCartItems,
+  removeCartItem,
+  updateCartItemQuantity,
+} from "@/lib/cartService";
 import { useCart } from "@/context/CartContext";
 
 interface CartMenuProps {
@@ -49,6 +53,11 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
     0
   );
 
+  const handleRemoveItem = async (cartItemId: string) => {
+    await removeCartItem(cartItemId);
+    refreshCart();
+  };
+
   return (
     <div
       className={`fixed top-0 left-0 right-0 bg-white/40 backdrop-blur-sm w-full h-full ${
@@ -70,18 +79,22 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
           style={{ WebkitOverflowScrolling: "touch" }}
           className="relative flex-1 mx-2 overflow-y-auto overflow-x-hidden overscroll-contain touch-pan-y"
         >
+          {loading && (
+            <p className="h-full w-full flex items-center justify-center">
+              Loading cart...
+            </p>
+          )}
+
+          {!loading && cartItems.length === 0 && (
+            <div className="h-full w-full flex items-center justify-center">
+              <p>your cart is empty</p>
+            </div>
+          )}
+
           <div
             style={{ WebkitOverflowScrolling: "touch" }}
             className="pb-2 mt-2 grid grid-rows-2 grid-flow-col auto-cols-max gap-x-5 gap-y-3 overflow-y-hidden touch-pan-x"
           >
-            {loading && <p>Loading cart...</p>}
-
-            {!loading && cartItems.length === 0 && (
-              <div className="flex flex-1 items-center justify-center">
-                <p>your cat is empty</p>
-              </div>
-            )}
-
             {cartItems.map((item) => {
               if (!item.products) return null;
 
@@ -100,7 +113,10 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
                     height={20}
                     className=""
                   />
-                  <div className="bg-white/30 backdrop-blur-sm rounded-full h-7 w-7 flex items-center justify-center absolute top-1 right-1 active:scale-90 transition duration-150 ease-in">
+                  <div
+                    onClick={() => handleRemoveItem(item.id)}
+                    className="bg-white/30 backdrop-blur-sm rounded-full h-7 w-7 flex items-center justify-center absolute top-1 right-1 active:scale-90 transition duration-150 ease-in"
+                  >
                     <IoClose className="text-[18px]" />
                   </div>
                   <div className="flex justify-between pt-2">
@@ -130,7 +146,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
           </div>
         </div>
 
-        {cartItems && (
+        {cartItems.length > 0 && (
           <div className="grid place-items-center py-4 flex-none">
             <p className="text-[15px] pb-2">Total&rarr; ghs {cartTotal}</p>
             <Button name="checkout" />

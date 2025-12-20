@@ -61,3 +61,14 @@ export const updateCartItemQuantity = async (
     console.error("Error updating quantity:", error);
   }
 };
+
+export const removeCartItem = async (cartItemId: string) => {
+  const { error } = await supabaseClient
+    .from("cart_items")
+    .delete()
+    .eq("id", cartItemId);
+
+  if (error) {
+    console.log("Error removing cart item:", error);
+  }
+};
