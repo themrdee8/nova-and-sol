@@ -12,6 +12,7 @@ import {
   updateCartItemQuantity,
 } from "@/lib/cartService";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 
 interface CartMenuProps {
   openCart: () => void;
@@ -23,6 +24,8 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
   const { refreshKey, refreshCart } = useCart();
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (!isOpen || !user) return;
@@ -149,7 +152,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
         {cartItems.length > 0 && (
           <div className="grid place-items-center py-4 flex-none">
             <p className="text-[15px] pb-2">Total&rarr; ghs {cartTotal}</p>
-            <Button name="checkout" />
+            <Button name="checkout" onclick={() => router.push("/checkout")} />
           </div>
         )}
         {/*  */}
