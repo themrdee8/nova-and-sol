@@ -5,12 +5,17 @@
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { getCartItems } from "@/lib/cartService";
+import Navbar from "@/components/Navbar";
+import Button from "@/components/Button";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
 
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [contact, setContact] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -42,6 +47,8 @@ const CheckoutPage = () => {
       if (!user.email) throw new Error("User email missing");
       if (!deliveryLocation || !deliveryAddress)
         throw new Error("Missing delivery info");
+      if (!firstName || !contact)
+        throw new Error("Missing first name and contact info");
       if (!total || total <= 0) throw new Error("Cart total invalid");
 
       const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY;
@@ -81,6 +88,21 @@ const CheckoutPage = () => {
               variable_name: "delivery_address",
               value: deliveryAddress,
             },
+            {
+              display_name: "First Name",
+              variable_name: "first_name",
+              value: firstName,
+            },
+            {
+              display_name: "Last Name",
+              variable_name: "last_name",
+              value: lastName,
+            },
+            {
+              display_name: "Contact",
+              variable_name: "contact",
+              value: contact,
+            },
           ],
         },
 
@@ -117,6 +139,9 @@ const CheckoutPage = () => {
           reference,
           delivery_location: deliveryLocation,
           delivery_address: deliveryAddress,
+          first_name: firstName,
+          last_name: lastName,
+          contact: contact,
         }),
       });
 
@@ -140,31 +165,75 @@ const CheckoutPage = () => {
       setLoading(false);
     };
   };
+
+  if (loading) return <div>Loading...</div>;
+
   return (
-    <div className="p-6">
-      <h1 className="text-xl mb-4">Checkout</h1>
+    <div>
+      <Navbar />
 
-      <select
-        value={deliveryLocation}
-        onChange={(e) => setDeliveryLocation(e.target.value)}
-      >
-        <option value="">Select location</option>
-        <option value="Accra">Accra</option>
-        <option value="Kumasi">Kumasi</option>
-      </select>
+      <div className="pt-20 px-4 grid grid-cols-1 font-Eb text-[18px]">
+        <div>
+          <p className="text-[22px] font-semibold uppercase pb-2">Delivery</p>
+        </div>
+        <select
+          value={deliveryLocation}
+          onChange={(e) => setDeliveryLocation(e.target.value)}
+          className="border w-full h-12 rounded-lg mb-4 px-1"
+        >
+          <option value="">Select location</option>
+          <option value="Accra">Accra</option>
+          <option value="Tema">Tema</option>
+          <option value="Kumasi">Kumasi</option>
+        </select>
 
-      <input
-        type="text"
-        placeholder="Delivery address (Yango)"
-        value={deliveryAddress}
-        onChange={(e) => setDeliveryAddress(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          className="border w-full h-12 rounded-lg mb-4 p-2"
+        />
 
-      <p>Total: GHS {total}</p>
+        <input
+          type="text"
+          placeholder="Last Name (Optional)"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          className="border w-full h-12 rounded-lg mb-4 p-2"
+        />
 
-      <button disabled={loading} onClick={handlePayment}>
-        Pay Now
-      </button>
+        <input
+          type="text"
+          placeholder="Contact"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
+          className="border w-full h-12 rounded-lg mb-4 p-2"
+        />
+
+        <input
+          type="text"
+          placeholder="Delivery address"
+          value={deliveryAddress}
+          onChange={(e) => setDeliveryAddress(e.target.value)}
+          className="border w-full h-12 rounded-lg mb-4 p-2"
+        />
+
+        <p className="mb-2 uppercase">Total: GHS {total}</p>
+        <p className="uppercase text-[15px]">
+          ( Delivery ranges from ghs 30 - ghs 50 for orders in Accra and Tema and ghs 40 - ghs 60 for orders to Kumasi )
+        </p>
+        
+        <p className="uppercase text-[15px]">
+          ( Delivery goes out on Fridays )
+        </p>
+
+        <Button
+          name="Pay Now"
+          styles="grid px-10 py-2"
+          onclick={handlePayment}
+        />
+      </div>
     </div>
   );
 };

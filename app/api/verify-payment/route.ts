@@ -5,7 +5,7 @@ import { sendReceiptEmail, sendAdminEmail } from "@/lib/email";
 
 export const POST = async (request: Request) => {
   try {
-    const { reference, delivery_location, delivery_address } =
+    const { reference, delivery_location, delivery_address, first_name, last_name, contact } =
       await request.json();
 
     if (!reference) {
@@ -60,6 +60,9 @@ export const POST = async (request: Request) => {
         total_amount: total,
         delivery_location,
         delivery_address,
+        first_name,
+        contact,
+        last_name
       })
       .select()
       .single();

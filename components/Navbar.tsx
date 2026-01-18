@@ -18,6 +18,7 @@ const Navbar = () => {
   const [cartMenu, setCartMenu] = useState(false);
   const pathname = usePathname();
   const isProductPage = pathname.startsWith(`/category/`);
+  const isCheckoutPage = pathname.startsWith("/checkout")
 
   const { user, openAuthModal, logout } = useAuth();
 
@@ -54,7 +55,7 @@ const Navbar = () => {
     setCartMenu(!cartMenu);
   };
 
-  const glassEffect = searchBar || scrollBg || isProductPage;
+  const glassEffect = searchBar || scrollBg || isProductPage || isCheckoutPage;
 
   return (
     <div
