@@ -32,7 +32,7 @@ export const productData: ProductData = {
     { name: "perf-3", image: banner, image2: cat, price: "£25.00" },
   ],
 
-  streetWear: [
+  nova: [
     { name: "sw-1", image: banner, image2: cat, price: "£12.00" },
     { name: "sw-2", image: banner, image2: cat, price: "£16.00" },
     { name: "sw-3", image: banner, image2: cat, price: "£5.00" },

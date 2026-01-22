@@ -1,6 +1,6 @@
 export const categoryConfig = {
-  streetWear: {
-    title: "streetwear",
+  nova: {
+    title: "nova",
     description: ["playful", "modern-luxury", "edgy"],
   },
   theSolStrand: {

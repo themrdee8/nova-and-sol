@@ -7,7 +7,7 @@ import Button from "./Button";
 import { useRouter } from "next/navigation";
 
 export const categories = [
-  { categoryName: "street wear", pageLink: "category/streetWear", imageUrl: cat },
+  { categoryName: "nova", pageLink: "category/nova", imageUrl: cat },
   {
     categoryName: "the sol strand",
     pageLink: "category/theSolStrand",

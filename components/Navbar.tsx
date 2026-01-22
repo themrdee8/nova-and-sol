@@ -23,7 +23,7 @@ const Navbar = () => {
   const { user, openAuthModal, logout } = useAuth();
 
   const categoryLink = [
-    { pageName: "streetwear", pageLink: "/streetWear" },
+    { pageName: "nova", pageLink: "/nova" },
     { pageName: "the sol strand", pageLink: "/theSolStrand" },
     { pageName: "amari", pageLink: "/amari" },
     { pageName: "the charm bar", pageLink: "/theCharmBar" },
@@ -144,8 +144,8 @@ const Navbar = () => {
             ${sidebar ? " translate-x-0" : "-translate-x-full"}`}
         >
           {user ? (
-            <div className="flex justify-end">
-              <p>{user.user_metadata?.full_name || user.email}</p>
+            <div className="flex justify-between items-center mb-2">
+              <p className="text-[14px]">{user.user_metadata?.full_name || user.email}</p>
               <FaArrowRightToBracket
                 className="active:scale-90"
                 onClick={toggleSidebar}
