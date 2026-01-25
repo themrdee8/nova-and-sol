@@ -4,16 +4,33 @@ import { FaInstagram, FaPinterestP, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTiktok } from "react-icons/bs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Contact = () => {
+  const router = useRouter();
   return (
     <div className="bg-white p-6">
       <div className="px-2 py-4 bg-gray-100 shadow-md font-Eb">
         <div className="">
           <p className="uppercase underline underline-offset-4 pb-2">Shop</p>
-          <p>About Us</p>
-          <p>Shipping / Deliveries</p>
-          <p>FAQs</p>
+          <p
+            onClick={() => router.push("/about")}
+            className="active:scale-90 transition duration-300 ease-in"
+          >
+            About Us
+          </p>
+          <p
+            onClick={() => router.push("/shipping")}
+            className="active:scale-90 transition duration-300 ease-in"
+          >
+            Shipping / Deliveries
+          </p>
+          <p
+            onClick={() => router.push("/about")}
+            className="active:scale-90 transition duration-300 ease-in"
+          >
+            FAQs
+          </p>
         </div>
         <p className="pt-4">Socials</p>
         <div className="flex justify-around py-2">

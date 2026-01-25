@@ -221,7 +221,7 @@ const CheckoutPage = () => {
 
         <p className="mb-2 uppercase">Total: GHS {total}</p>
         <p className="uppercase text-[15px]">
-          ( Delivery ranges from ghs 30 - ghs 50 for orders in Accra and Tema and ghs 40 - ghs 60 for orders to Kumasi )
+          ( Delivery ranges from ¢30 - ¢35 for orders in Accra and Tema and ¢40 for orders to Kumasi )
         </p>
         
         <p className="uppercase text-[15px]">

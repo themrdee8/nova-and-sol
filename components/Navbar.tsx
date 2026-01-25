@@ -6,7 +6,7 @@ import { FiSearch } from "react-icons/fi";
 import { FaPlus, FaArrowRightToBracket } from "react-icons/fa6";
 import { IoIosClose } from "react-icons/io";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import CartMenu from "./CartMenu";
 
@@ -18,9 +18,10 @@ const Navbar = () => {
   const [cartMenu, setCartMenu] = useState(false);
   const pathname = usePathname();
   const isProductPage = pathname.startsWith(`/category/`);
-  const isCheckoutPage = pathname.startsWith("/checkout")
+  const isCheckoutPage = pathname.startsWith("/checkout");
 
   const { user, openAuthModal, logout } = useAuth();
+  const router = useRouter();
 
   const categoryLink = [
     { pageName: "nova", pageLink: "/nova" },
@@ -145,7 +146,9 @@ const Navbar = () => {
         >
           {user ? (
             <div className="flex justify-between items-center mb-2">
-              <p className="text-[14px]">{user.user_metadata?.full_name || user.email}</p>
+              <p className="text-[14px]">
+                {user.user_metadata?.full_name || user.email}
+              </p>
               <FaArrowRightToBracket
                 className="active:scale-90"
                 onClick={toggleSidebar}
@@ -199,7 +202,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="py-4 pb-4 mb-4 pt-4 border-b">
-            <p>about us</p>
+            <p onClick={() => router.push("/about")}>about us</p>
           </div>
           {user ? (
             <div className="py-4 pb-4 mb-4 pt-4 border-b">

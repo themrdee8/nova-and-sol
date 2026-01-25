@@ -158,7 +158,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
         {/*  */}
         <div className="border-t py-2 text-center text-[13px] flex-none">
           <p>Free delivery in Accra and</p>
-          <p>purchases ghs 350 and above</p>
+          <p>purchases ghs 450 and above</p>
         </div>
       </div>
     </div>

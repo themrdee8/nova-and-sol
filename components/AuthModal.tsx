@@ -3,7 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import Button from "./Button";
-import { SiGoogle } from "react-icons/si";
+// import { SiGoogle } from "react-icons/si";
 
 const AuthModal = () => {
   const { authModalOpen, closeAuthModal, login, signup } = useAuth();
@@ -78,10 +78,10 @@ const AuthModal = () => {
           )}
           <Button onclick={handleSubmit} name={isLogin ? "login" : "signup"} />
         </div>
-        <div className="flex items-center mx-12 p-1 justify-center space-x-8 bg-[#E8d3a4] mt-4 text-[13px]">
+        {/* <div className="flex items-center mx-12 p-1 justify-center space-x-8 bg-[#E8d3a4] mt-4 text-[13px]">
           <SiGoogle />
           <p>Google sign in</p>
-        </div>
+        </div> */}
         <div className="flex space-x-2 text-[13px] justify-center pt-4">
           <p>{isLogin ? "Create an account" : "Already have an account?"} </p>
           <p
