@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
-import banner from "@/public/images/banner.jpg";
+// import banner from "@/public/images/banner.jpg";
 import Button from "./Button";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import {
   getCartItems,
   removeCartItem,
-  updateCartItemQuantity,
+  // updateCartItemQuantity,
 } from "@/lib/cartService";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
@@ -40,16 +40,16 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
     loadCart();
   }, [isOpen, user, refreshKey]);
 
-  const handleIncrease = async (item: any) => {
-    await updateCartItemQuantity(item.id, item.quantity + 1);
-    refreshCart();
-  };
+  // const handleIncrease = async (item: any) => {
+  //   await updateCartItemQuantity(item.id, item.quantity + 1);
+  //   refreshCart();
+  // };
 
-  const handleDecrease = async (item: any) => {
-    if (item.quantity === 1) return;
-    await updateCartItemQuantity(item.id, item.quantity - 1);
-    refreshCart();
-  };
+  // const handleDecrease = async (item: any) => {
+  //   if (item.quantity === 1) return;
+  //   await updateCartItemQuantity(item.id, item.quantity - 1);
+  //   refreshCart();
+  // };
 
   const cartTotal = cartItems.reduce(
     (sum, item) => sum + item.quantity * item.products.price,
@@ -102,7 +102,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
               if (!item.products) return null;
 
               const product = item.products;
-              const itemTotal = product.price * item.quantity;
+              // const itemTotal = product.price * item.quantity;
 
               return (
                 <div
@@ -110,8 +110,8 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
                   className="text-[13px] w-[200px] relative inline-block mt-4"
                 >
                   <Image
-                    src={banner}
-                    alt="banner"
+                    src={product.image_url}
+                    alt={product.name}
                     width={200}
                     height={20}
                     className=""
@@ -122,7 +122,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
                   >
                     <IoClose className="text-[18px]" />
                   </div>
-                  <div className="flex justify-between pt-2">
+                  {/* <div className="flex justify-between pt-2">
                     <p>quantity: {item.quantity}</p>
                     <div className="flex space-x-2">
                       <div
@@ -138,11 +138,11 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
                         <FaPlus />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <p>{product.name}</p>
-                  <p>ghs {product.price}</p>
-                  <p>total&rarr; ghs {itemTotal}</p>
+                  <p>price: ghs {product.price}</p>
+                  {/* <p>total&rarr; ghs {itemTotal}</p> */}
                 </div>
               );
             })}
@@ -158,7 +158,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
         {/*  */}
         <div className="border-t py-2 text-center text-[13px] flex-none">
           <p>Free delivery in Accra and</p>
-          <p>purchases ghs 450 and above</p>
+          <p>purchases ghs 350 and above</p>
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@
 "use client";
 import React from "react";
 import cat from "@/public/images/cat.jpg";
+import charmbarbanner from "@/public/images/charmbarbanner.jpeg"
+import perfectfind from '@/public/images/perfectfind.jpeg'
 import Image from "next/image";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
@@ -17,12 +19,12 @@ export const categories = [
   {
     categoryName: "the charm bar",
     pageLink: "category/theCharmBar",
-    imageUrl: cat,
+    imageUrl: charmbarbanner,
   },
   {
     categoryName: "the perfect find",
     pageLink: "category/thePerfectFind",
-    imageUrl: cat,
+    imageUrl: perfectfind,
   },
 ];
 const CategoryCard = () => {
@@ -40,7 +42,7 @@ const CategoryCard = () => {
             alt={category.categoryName}
             className="object-cover col-start-1 row-start-1 h-[350px]"
           />
-          <p className="col-start-1 row-start-1 uppercase font-Eb text-[20px] text-[#E8d3a4] mt-[200px]">
+          <p className="col-start-1 row-start-1 uppercase font-Eb text-[18px] bg-[#422727] p-1.5 rounded-lg text-[#E8d3a4] mt-[200px]">
             {category.categoryName}
           </p>
           <Button

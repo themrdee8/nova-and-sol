@@ -4,7 +4,7 @@
 import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import banner from "@/public/images/banner.jpg";
+import novabanner from "@/public/images/banner.jpg";
 import { categoryConfig } from "../../categoryConfig";
 import { usePathname } from "next/navigation";
 // import { productData } from "@/app/data/products";
@@ -19,6 +19,7 @@ const CategoryPage = () => {
   const category = categoryConfig[categoryKey as keyof typeof categoryConfig];
   const title = category?.title || "";
   const description = category?.description || [];
+  const banner = category?.banner || novabanner;
 
   // Backend data call for products
   const [productsForCategory, setProductsForCategory] = useState<any[] | null>(
@@ -88,14 +89,14 @@ const CategoryPage = () => {
         />
 
         <div className="bg-transparent col-start-1 row-start-1 w-[380px] h-[180px] mt-12">
-          <p className="text-[38px] font-Eb text-center uppercase pt-4 mt-6 mb-2">
+          <p className="text-[38px] text-[#E8d3a4] font-bold bg-[#422727] rounded-full font-Eb text-center uppercase pt- mt-12 mb-2">
             {title}
           </p>
-          <ul className="list-disc flex space-x-8 font-serif justify-center uppercase ml-3 pt-10">
+          {/* <ul className="list-disc flex space-x-8 font-serif justify-center uppercase ml-3 pt-10">
             {description.map((item) => (
               <li key={item}>{item}</li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
       {categoryKey === "theCharmBar" ? (
@@ -117,7 +118,6 @@ const CategoryPage = () => {
                   price={product.price}
                   category={categoryKey}
                   slug={product.slug}
-                  quantity={product.quantity}
                 />
               ))}
             </div>

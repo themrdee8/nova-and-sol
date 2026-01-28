@@ -8,10 +8,16 @@ import { useEffect, useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { categories } from "@/components/CategoryCard";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { addToCart } from "@/lib/cartService";
+import { useCart } from "@/context/CartContext";
+import toast from "react-hot-toast";
 
 const ProductDetailsPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const params = useParams();
+  const { user, openAuthModal } = useAuth();
+  const { refreshCart } = useCart();
   // const productName = params.productDetails;
   const safeName = String(params.productDetails);
 
@@ -45,6 +51,25 @@ const ProductDetailsPage = () => {
 
     loadProductDetails();
   }, [safeName]);
+
+  // Add to cart
+  const handleAddToCart = async () => {
+    if (!user) {
+      openAuthModal();
+      return;
+    }
+
+    try {
+      const result = await addToCart(user.id, productDetails.id);
+      toast.success(
+        result.action === "added" ? "Product added to cart" : "Already in cart",
+      );
+      refreshCart();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add product to cart");
+    }
+  };
 
   if (isLoadingProductDetails) return <div>Loading product...</div>;
   if (productDetailsError) return <div>Error: {productDetailsError}</div>;
@@ -104,7 +129,7 @@ const ProductDetailsPage = () => {
       </div>
 
       <div className="grid place-items-center">
-        <Button name="add to cart" styles="mt-4" />
+        <Button name="add to cart" styles="mt-4" onclick={handleAddToCart} />
       </div>
 
       <div className="py-14 px-4">

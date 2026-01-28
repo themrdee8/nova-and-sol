@@ -8,17 +8,18 @@ export const addToCart = async (userId: string, productId: string) => {
     .eq("product_id", productId)
     .maybeSingle();
 
-  console.log(existing);
+  // console.log(existing);
   if (error) {
     console.error("Error checking cart: ", error);
   }
 
   if (existing) {
     //increase quantity
-    await supabaseClient
-      .from("cart_items")
-      .update({ quantity: existing.quantity + 1 })
-      .eq("id", existing.id);
+    // await supabaseClient
+    //   .from("cart_items")
+    //   .update({ quantity: existing.quantity + 1 }) // TODO: change logic to "already in cart"
+    //   .eq("id", existing.id);
+      return {action: "notification"}
   } else {
     // insert new row
     const { error: insertError } = await supabaseClient
@@ -32,6 +33,8 @@ export const addToCart = async (userId: string, productId: string) => {
     if (insertError) {
       console.error("Insert failed: ", insertError);
     }
+
+    return { action: "added"}
   }
 };
 

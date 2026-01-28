@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getCartItems } from "@/lib/cartService";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
+import toast from "react-hot-toast";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
@@ -124,7 +125,7 @@ const CheckoutPage = () => {
       });
     } catch (error) {
       console.error("Checkout error:", error);
-      alert(error instanceof Error ? error.message : "Checkout failed");
+      toast.error(error instanceof Error ? error.message : "Checkout failed");
       setLoading(false);
     }
 
@@ -132,7 +133,7 @@ const CheckoutPage = () => {
     const confirmOrder = async (reference: string) => {
       setLoading(true);
 
-      const response = await fetch("/api/verify-payment", {
+      const response = await fetch("/api/paystack/webhook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -150,7 +151,7 @@ const CheckoutPage = () => {
       console.log("Verify result:", result);
 
       if (!response.ok || !result.success) {
-        alert("Payment verification failed");
+        toast.error("Payment verification failed");
         setLoading(false);
         return;
       }
@@ -161,7 +162,7 @@ const CheckoutPage = () => {
       // 3. Clear cart
       // 4. Redirect to success page
 
-      alert("Payment successful!");
+      toast.success("Payment successful!");
       setLoading(false);
     };
   };

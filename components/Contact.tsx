@@ -65,7 +65,7 @@ const Contact = () => {
           </Link>
         </div>
         <div className="pt-4">
-          <p>Sign up to our Emails</p>
+          <p>Sign up to our Emails (Coming Soon)</p>
           <Button name="Subscribe" styles="pt-2" />
         </div>
       </div>

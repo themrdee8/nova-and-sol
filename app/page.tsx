@@ -40,30 +40,31 @@ export default function Home() {
           />
         </div>
 
-        <div className="bg-gray-100">
-          <div className="bg-white flex justify-center p-8">
-            <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
+        {newArrival && (
+          <div className="bg-gray-100">
+            <div className="bg-white flex justify-center p-8">
+              <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
+            </div>
+            <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
+              {newArrival.slice(0, 4).map((product) => (
+                <NewArrivalsCard
+                  key={product.id}
+                  id={product.id}
+                  imageUrl={product.image_url || fallbackImage}
+                  name={product.name}
+                  price={product.price}
+                  slug={product.slug}
+                  category="newArrivals"
+                />
+              ))}
+            </div>
+            <Button
+              onclick={newArrivals}
+              name="view all"
+              styles="flex justify-center pb-10"
+            />
           </div>
-          <div className="grid grid-cols-2 gap-1 py-10 px-4 place-items-center">
-            {newArrival.slice(0, 4).map((product) => (
-              <NewArrivalsCard
-                key={product.id}
-                id={product.id}
-                imageUrl={product.image_url || fallbackImage}
-                name={product.name}
-                price={product.price}
-                slug={product.slug}
-                quantity={product.quantity}
-                category="newArrivals"
-              />
-            ))}
-          </div>
-          <Button
-            onclick={newArrivals}
-            name="view all"
-            styles="flex justify-center pb-10"
-          />
-        </div>
+        )}
 
         <CategoryCard />
 

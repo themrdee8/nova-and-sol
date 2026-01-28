@@ -3,6 +3,7 @@ import { useCart } from "@/context/CartContext";
 import { addToCart } from "@/lib/cartService";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface NewArrivalsCardProps {
   id: string;
@@ -11,7 +12,6 @@ interface NewArrivalsCardProps {
   imageUrl: StaticImageData | string;
   category: string;
   slug: string;
-  quantity: number;
 }
 
 const NewArrivalsCard = ({ ...props }: NewArrivalsCardProps) => {
@@ -24,9 +24,16 @@ const NewArrivalsCard = ({ ...props }: NewArrivalsCardProps) => {
       return;
     }
 
-    await addToCart(user.id, props.id);
-
-    refreshCart();
+    try {
+      const result = await addToCart(user.id, props.id);
+      toast.success(
+        result.action === "added" ? "Product added to cart" : "Already in cart",
+      );
+      refreshCart();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add product to cart");
+    }
   };
 
   return (
@@ -39,9 +46,9 @@ const NewArrivalsCard = ({ ...props }: NewArrivalsCardProps) => {
             width={700}
             height={20}
           />
-          <div className="rounded-full bg-white/30 backdrop-blur-sm h-7 w-7 font-Eb text-[17px] flex items-center justify-center absolute top-2 right-2">
+          {/* <div className="rounded-full bg-white/30 backdrop-blur-sm h-7 w-7 font-Eb text-[17px] flex items-center justify-center absolute top-2 right-2">
             <p className="font-bold text-[#E8d3a4]">{props.quantity}</p>
-          </div>
+          </div> */}
         </div>
       </Link>
       <div className="grid grid-cols-1 pt-1 pb-4 font-Eb text-[11px] uppercase">

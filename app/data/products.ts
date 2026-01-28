@@ -54,14 +54,6 @@ export const charmbar = {
     { name: "bracelet3", image: cat, image2: banner, price: "£16.00" },
   ],
 
-  necklace: [
-    { name: "necklace1", image: cat, image2: banner, price: "£9.00" },
-    { name: "necklace2", image: cat, image2: banner, price: "£3.00" },
-    { name: "necklace3", image: cat, image2: banner, price: "£44.00" },
-    { name: "necklace4", image: cat, image2: banner, price: "£44.00" },
-    { name: "necklace5", image: cat, image2: banner, price: "£44.00" },
-  ],
-
   charms: [
     { name: "charms", image: cat, image2: banner, price: "£4.00" },
     { name: "star", image: cat, image2: banner, price: "£56.00" },

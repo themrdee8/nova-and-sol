@@ -42,14 +42,12 @@ export const fetchCharmbarSections = async () => {
     console.error("Error fetching charmbar products: ", error.message);
     return {
       bracelet: [],
-      necklace: [],
       charms: [],
     };
   }
 
   const grouped = {
     bracelet: data.filter((product) => product.charmbar_section === "bracelet"),
-    necklace: data.filter((product) => product.charmbar_section === "necklace"),
     charms: data.filter((product) => product.charmbar_section === "charms"),
   };
 
