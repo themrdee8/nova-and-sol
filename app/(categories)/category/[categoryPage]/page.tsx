@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import TheCharmBarPage from "@/components/CharmbarSection";
 import { useEffect, useState } from "react";
+import { SpinnerCustom } from "@/components/ui/spinner";
 // import { getCategoryProducts } from "./fetchCategoryProducts";
 
 const CategoryPage = () => {
@@ -23,7 +24,7 @@ const CategoryPage = () => {
 
   // Backend data call for products
   const [productsForCategory, setProductsForCategory] = useState<any[] | null>(
-    null
+    null,
   );
   const [charmbarSectionsState, setCharmbarSectionsState] = useState<Record<
     string,
@@ -31,7 +32,7 @@ const CategoryPage = () => {
   > | null>(null);
   const [isLoadingProducts, setIsLoadingProducts] = useState<boolean>(false);
   const [fetchProductsError, setFetchProductsError] = useState<string | null>(
-    null
+    null,
   );
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const CategoryPage = () => {
         } else {
           //fetch categories
           const response = await fetch(
-            `/api/products?category=${encodeURIComponent(categoryKey)}`
+            `/api/products?category=${encodeURIComponent(categoryKey)}`,
           );
           const json = await response.json();
           setProductsForCategory(json.products || []);
@@ -104,7 +105,9 @@ const CategoryPage = () => {
       ) : (
         <>
           {isLoadingProducts ? (
-            <p>Loading...</p>
+            <div className="h-screen w-full flex items-center justify-center">
+              <SpinnerCustom />
+            </div>
           ) : fetchProductsError ? (
             <p>Error loading products: {fetchProductsError}</p>
           ) : productsForCategory && productsForCategory.length ? (
@@ -122,7 +125,9 @@ const CategoryPage = () => {
               ))}
             </div>
           ) : (
-            <p>Coming soon</p>
+            <div className="h-screen w-full flex items-center justify-center">
+              <p>Coming soon</p>
+            </div>
           )}
         </>
       )}

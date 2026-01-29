@@ -12,6 +12,7 @@ import { useAuth } from "@/context/AuthContext";
 import { addToCart } from "@/lib/cartService";
 import { useCart } from "@/context/CartContext";
 import toast from "react-hot-toast";
+import { SpinnerCustom } from "@/components/ui/spinner";
 
 const ProductDetailsPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -71,7 +72,7 @@ const ProductDetailsPage = () => {
     }
   };
 
-  if (isLoadingProductDetails) return <div>Loading product...</div>;
+  if (isLoadingProductDetails) return <SpinnerCustom />;
   if (productDetailsError) return <div>Error: {productDetailsError}</div>;
   if (!productDetails) return <div>Product not find</div>;
 

@@ -8,6 +8,7 @@ import { getCartItems } from "@/lib/cartService";
 import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import toast from "react-hot-toast";
+import { SpinnerCustom } from "@/components/ui/spinner";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
@@ -32,7 +33,7 @@ const CheckoutPage = () => {
       const sum = items.reduce(
         (account: number, item: any) =>
           account + item.quantity * item.products.price,
-        0
+        0,
       );
 
       setTotal(sum);
@@ -167,7 +168,7 @@ const CheckoutPage = () => {
     };
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <SpinnerCustom />;
 
   return (
     <div>
@@ -222,9 +223,10 @@ const CheckoutPage = () => {
 
         <p className="mb-2 uppercase">Total: GHS {total}</p>
         <p className="uppercase text-[15px]">
-          ( Delivery ranges from ¢30 - ¢35 for orders in Accra and Tema and ¢40 for orders to Kumasi )
+          ( Delivery ranges from ¢30 - ¢35 for orders in Accra and Tema and ¢40
+          for orders to Kumasi )
         </p>
-        
+
         <p className="uppercase text-[15px]">
           ( Delivery goes out on Fridays )
         </p>

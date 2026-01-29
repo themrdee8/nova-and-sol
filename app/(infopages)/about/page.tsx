@@ -100,15 +100,16 @@ const About = () => {
         <div>
           <p className="font-semibold uppercase">Where do you deliver to?</p>
 
-          <p>
-            Currently, we deliver within:
+          <div>
+            <p>Currently, we deliver within:</p>
+            
             <ul className="list-disc p-4">
               <li>Accra</li>
               <li> Kumasi</li>
             </ul>{" "}
             Nationwide and international shipping will be introduced gradually
             in the future.
-          </p>
+          </div>
         </div>
         <div>
           <p className="font-semibold uppercase">How much is delivery?</p>

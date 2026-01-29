@@ -3,6 +3,7 @@
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import { useEffect, useState } from "react";
 import Button from "@/components/Button";
+import { SpinnerCustom } from "./ui/spinner";
 
 const TheCharmBarPage = () => {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -52,8 +53,13 @@ const TheCharmBarPage = () => {
   };
 
   if (isLoadingCharmbarState) {
-    return <p className="py-10 text-center">Loading charmbar products...</p>;
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <SpinnerCustom />
+      </div>
+    )
   }
+  // <p className="py-10 text-center">Loading charmbar products...</p>
 
   if (charmbarErrorState) {
     return <p className="py-10 text-center">Error: {charmbarErrorState}</p>;

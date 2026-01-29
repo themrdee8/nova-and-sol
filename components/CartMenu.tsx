@@ -13,6 +13,7 @@ import {
 } from "@/lib/cartService";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
+import { SpinnerCustom } from "./ui/spinner";
 
 interface CartMenuProps {
   openCart: () => void;
@@ -53,7 +54,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
 
   const cartTotal = cartItems.reduce(
     (sum, item) => sum + item.quantity * item.products.price,
-    0
+    0,
   );
 
   const handleRemoveItem = async (cartItemId: string) => {
@@ -83,9 +84,12 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
           className="relative flex-1 mx-2 overflow-y-auto overflow-x-hidden overscroll-contain touch-pan-y"
         >
           {loading && (
-            <p className="h-full w-full flex items-center justify-center">
-              Loading cart...
-            </p>
+            <div className="h-full w-full flex items-center justify-center">
+              <div className="flex px-2 rounded-lg">
+                <SpinnerCustom />
+                <p className="ml-2 text-[15px] capitalize">Loading products</p>
+              </div>
+            </div>
           )}
 
           {!loading && cartItems.length === 0 && (
@@ -158,7 +162,7 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
         {/*  */}
         <div className="border-t py-2 text-center text-[13px] flex-none">
           <p>Free delivery in Accra and</p>
-          <p>purchases ghs 350 and above</p>
+          <p>purchases ghs 450 and above</p>
         </div>
       </div>
     </div>
