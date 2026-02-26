@@ -1,5 +1,5 @@
 import charmbarbanner from '@/public/images/novabanner2.jpeg'
-import perfectfind from '@/public/images/perfectfind.jpeg'
+import perfectfind from '@/public/images/perfect.jpg'
 
 export const categoryConfig = {
   nova: {

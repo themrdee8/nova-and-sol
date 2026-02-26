@@ -72,7 +72,11 @@ const ProductDetailsPage = () => {
     }
   };
 
-  if (isLoadingProductDetails) return <SpinnerCustom />;
+  if (isLoadingProductDetails) return (
+  <div className="h-screen w-full flex items-center justify-center">
+    <SpinnerCustom />
+  </div>
+  );
   if (productDetailsError) return <div>Error: {productDetailsError}</div>;
   if (!productDetails) return <div>Product not find</div>;
 
@@ -133,12 +137,12 @@ const ProductDetailsPage = () => {
         <Button name="add to cart" styles="mt-4" onclick={handleAddToCart} />
       </div>
 
-      <div className="py-14 px-4">
+      {/* <div className="py-14 px-4">
         <p className="pb-2 uppercase font-Eb font-medium">Additional comment</p>
         <textarea name="" id="" className="border-2 w-full"></textarea>
-      </div>
+      </div> */}
 
-      <div className="px-6">
+      <div className="px-6 mt-10">
         <p className="uppercase pb-4 text-[25px] font-Eb underline underline-offset-4">
           Shop
         </p>

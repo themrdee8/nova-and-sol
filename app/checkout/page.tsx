@@ -9,9 +9,11 @@ import Navbar from "@/components/Navbar";
 import Button from "@/components/Button";
 import toast from "react-hot-toast";
 import { SpinnerCustom } from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
+  const router = useRouter()
 
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -108,9 +110,15 @@ const CheckoutPage = () => {
           ],
         },
 
-        onSuccess: async (transaction) => {
-          console.log("Payment success:", transaction);
-          await confirmOrder(transaction.reference);
+        // onSuccess: async (transaction) => {
+        //   console.log("Payment success:", transaction);
+        //   await confirmOrder(transaction.reference);
+        // },
+
+        onSuccess: (transaction) => {
+          router.push(
+            `/success?reference=${transaction.reference}&total=${total}`
+          )
         },
 
         onCancel: () => {

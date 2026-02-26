@@ -3,7 +3,7 @@
 import React from "react";
 import cat from "@/public/images/cat.jpg";
 import charmbarbanner from "@/public/images/charmbarbanner.jpeg"
-import perfectfind from '@/public/images/perfectfind.jpeg'
+import perfectfind from '@/public/images/perfect.jpg'
 import Image from "next/image";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
