@@ -9,13 +9,13 @@ import Button from "./Button";
 import { useRouter } from "next/navigation";
 
 export const categories = [
-  { categoryName: "nova", pageLink: "category/nova", imageUrl: cat },
+  // { categoryName: "nova", pageLink: "category/nova", imageUrl: cat },
   {
     categoryName: "the sol strand",
     pageLink: "category/theSolStrand",
     imageUrl: cat,
   },
-  { categoryName: "amari", pageLink: "category/amari", imageUrl: cat },
+  // { categoryName: "amari", pageLink: "category/amari", imageUrl: cat },
   {
     categoryName: "the charm bar",
     pageLink: "category/theCharmBar",

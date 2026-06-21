@@ -24,9 +24,9 @@ const Navbar = () => {
   const router = useRouter();
 
   const categoryLink = [
-    { pageName: "nova", pageLink: "/nova" },
+    // { pageName: "nova", pageLink: "/nova" },
     { pageName: "the sol strand", pageLink: "/theSolStrand" },
-    { pageName: "amari", pageLink: "/amari" },
+    // { pageName: "amari", pageLink: "/amari" },
     { pageName: "the charm bar", pageLink: "/theCharmBar" },
     { pageName: "the perfect find", pageLink: "/thePerfectFind" },
   ];
