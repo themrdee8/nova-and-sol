@@ -41,7 +41,7 @@ export default function Home() {
           />
         </div>
 
-        {newArrival && (
+        {newArrival.length > 0 ? (
           <div className="bg-gray-100">
             <div className="bg-white flex justify-center p-8">
               <p className="uppercase text-4xl font-serif mt-4">new arrivals</p>
@@ -64,6 +64,12 @@ export default function Home() {
               name="view all"
               styles="flex justify-center pb-10"
             />
+          </div>
+        ) : (
+          <div className="h-32 bg-white flex justify-center p-8 mb-">
+            <p className="uppercase text-2xl font-serif mt-4 text-center">
+              Deliveries go out on fridays
+            </p>{" "}
           </div>
         )}
 
