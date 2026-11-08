@@ -130,7 +130,7 @@ const ProductDetailsPage = () => {
       </div>
       <div className="grid place-items-center text-[18px] uppercase font-Eb">
         <p>{items.name}</p>
-        <p>ghs {items.price}</p>
+        <p>gh¢ {items.price}</p>
       </div>
 
       <div className="grid place-items-center">

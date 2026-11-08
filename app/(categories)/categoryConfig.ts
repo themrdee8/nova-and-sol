@@ -1,5 +1,6 @@
-import charmbarbanner from '@/public/images/novabanner2.jpeg'
-import perfectfind from '@/public/images/perfect.jpg'
+import charmbarbanner from '@/public/images/charms.jpg'
+import perfectfind from '@/public/images/perfectfind.jpeg'
+import sol from "@/public/images/sol.jpg";
 
 export const categoryConfig = {
   // nova: {
@@ -10,7 +11,7 @@ export const categoryConfig = {
   theSolStrand: {
     title: "the sol strand",
     description: ["warm", "earthy", "cultural"],
-    banner: charmbarbanner
+    banner: sol,
   },
   // amari: {
   //   title: "amari",

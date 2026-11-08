@@ -1,7 +1,5 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import banner from "../public/images/banner.jpg";
-import Image from "next/image";
 import Button from "@/components/Button";
 import NewArrivalsCard from "@/components/NewArrivalsCard";
 import CategoryCard from "@/components/CategoryCard";
@@ -33,10 +31,13 @@ export default function Home() {
       <main className="">
         <Navbar />
         <div className="h-[600px] grid place-items-center">
-          <Image
-            src={banner}
-            alt="banner"
-            className="h-[600px] object-cover col-start-1 row-start-1"
+          <video
+            src="/videos/home.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-[600px] w-full object-cover col-start-1 row-start-1"
           />
         </div>
 

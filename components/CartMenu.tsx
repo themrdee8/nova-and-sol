@@ -145,8 +145,8 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
                   </div> */}
 
                   <p>{product.name}</p>
-                  <p>price: ghs {product.price}</p>
-                  {/* <p>total&rarr; ghs {itemTotal}</p> */}
+                  <p>price: gh¢ {product.price}</p>
+                  {/* <p>total&rarr; gh¢ {itemTotal}</p> */}
                 </div>
               );
             })}
@@ -155,14 +155,14 @@ const CartMenu = ({ openCart, isOpen }: CartMenuProps) => {
 
         {cartItems.length > 0 && (
           <div className="grid place-items-center py-4 flex-none">
-            <p className="text-[15px] pb-2">Total&rarr; ghs {cartTotal}</p>
+            <p className="text-[15px] pb-2">Total&rarr; gh¢ {cartTotal}</p>
             <Button name="checkout" onclick={() => router.push("/checkout")} />
           </div>
         )}
         {/*  */}
         <div className="border-t py-2 text-center text-[13px] flex-none">
           <p>Free delivery in Accra and</p>
-          <p>purchases ghs 450 and above</p>
+          <p>purchases gh¢ 450 and above</p>
         </div>
       </div>
     </div>

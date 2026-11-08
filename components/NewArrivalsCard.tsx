@@ -53,7 +53,7 @@ const NewArrivalsCard = ({ ...props }: NewArrivalsCardProps) => {
       </Link>
       <div className="grid grid-cols-1 pt-1 pb-4 font-Eb text-[11px] uppercase">
         <p>{props.name}</p>
-        <p>ghs {props.price}</p>
+        <p>gh¢ {props.price}</p>
         <p
           onClick={handleAddToCart}
           className="my-2 underline-offset-4 underline cursor-pointer"

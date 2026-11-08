@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from "react";
-import cat from "@/public/images/cat.jpg";
-import charmbarbanner from "@/public/images/charmbarbanner.jpeg"
-import perfectfind from '@/public/images/perfect.jpg'
+import sol from "@/public/images/sol.jpg";
+import charmbarbanner from "@/public/images/charms.jpg"
+import perfectfind from '@/public/images/perfectfind.jpeg'
 import Image from "next/image";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,7 @@ export const categories = [
   {
     categoryName: "the sol strand",
     pageLink: "category/theSolStrand",
-    imageUrl: cat,
+    imageUrl: sol,
   },
   // { categoryName: "amari", pageLink: "category/amari", imageUrl: cat },
   {

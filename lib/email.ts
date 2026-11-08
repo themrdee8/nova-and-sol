@@ -15,7 +15,7 @@ export const sendReceiptEmail = async ({
   const itemsHtml = items
     .map(
       (item) =>
-        `<li>${item.products.name} x ${item.quantity} - GHS ${
+        `<li>${item.products.name} x ${item.quantity} - GH¢ ${
           item.products.price * item.quantity
         }</li>`
     )
@@ -46,7 +46,7 @@ export const sendReceiptEmail = async ({
               ${itemsHtml}
             </ul>
           </li>
-          <li><strong>Total:</strong> GHS ${order.total_amount}</li>
+          <li><strong>Total:</strong> GH¢ ${order.total_amount}</li>
           <li><strong>Payment Method:</strong> Mobile Money</li>
           <li><strong>Delivery:</strong> ${
             order.delivery_location, order.delivery_address || "To be confirmed"
@@ -102,7 +102,7 @@ export const sendAdminEmail = async ({
 
       <ul>${itemsHtml}</ul>
 
-      <p><strong>Total:</strong> GHS ${order.total_amount}</p>
+      <p><strong>Total:</strong> GH¢ ${order.total_amount}</p>
     `,
   });
 };
