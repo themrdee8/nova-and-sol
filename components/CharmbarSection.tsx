@@ -20,7 +20,7 @@ const TheCharmBarPage = () => {
   const [isLoadingCharmbarState, setIsLoadingCharmbarState] =
     useState<boolean>(false);
   const [charmbarErrorState, setCharmbarErrorState] = useState<string | null>(
-    null
+    null,
   );
 
   // Fetch charmbar section from API
@@ -36,7 +36,7 @@ const TheCharmBarPage = () => {
         setCharmbarSectionsState(json.charmbarSections || {});
       } catch (error: any) {
         setCharmbarErrorState(
-          error.message || "Failed to load charmbar products"
+          error.message || "Failed to load charmbar products",
         );
       } finally {
         setIsLoadingCharmbarState(false);
@@ -54,10 +54,13 @@ const TheCharmBarPage = () => {
 
   if (isLoadingCharmbarState) {
     return (
-      <div className="h-screen w-full flex items-center justify-center">
+      <div
+        key="spinner"
+        className="h-screen w-full flex items-center justify-center"
+      >
         <SpinnerCustom />
       </div>
-    )
+    );
   }
   // <p className="py-10 text-center">Loading charmbar products...</p>
 
@@ -78,34 +81,38 @@ const TheCharmBarPage = () => {
           : initialVisibleCount[sectionName] || 4;
         return (
           <div key={sectionName}>
-            <div className="flex items-center pt-14 pb-4">
-              <p className="font-Eb text-[23px] uppercase font-medium">
-                {sectionName}
-              </p>
-            </div>
+            {products.length > 0 && (
+              <div key={sectionName}>
+                <div className="flex items-center pt-14 pb-4">
+                  <p className="font-Eb text-[23px] uppercase font-medium">
+                    {sectionName}
+                  </p>
+                </div>
 
-            <div className="bg-gray-100 mb-8">
-              <div className="grid grid-cols-2 gap-1 py-10 px-4">
-                {products.slice(0, visibleCount).map((product) => (
-                  <NewArrivalsCard
-                    key={product.name}
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    imageUrl={product.image_url}
-                    slug={product.slug}
-                    category="theCharmBar"
-                  />
-                ))}
+                <div className="bg-gray-100 mb-8">
+                  <div className="grid grid-cols-2 gap-1 py-10 px-4">
+                    {products.slice(0, visibleCount).map((product) => (
+                      <NewArrivalsCard
+                        key={product.name}
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        imageUrl={product.image_url}
+                        slug={product.slug}
+                        category="theCharmBar"
+                      />
+                    ))}
+                  </div>
+                  {products.length > initialVisibleCount[sectionName] && (
+                    <Button
+                      onclick={() => toggleExpand(sectionName)}
+                      name={isExpanded ? "view less" : "view all"}
+                      styles="flex justify-center pb-10"
+                    />
+                  )}
+                </div>
               </div>
-              {products.length > initialVisibleCount[sectionName] && (
-                <Button
-                  onclick={() => toggleExpand(sectionName)}
-                  name={isExpanded ? "view less" : "view all"}
-                  styles="flex justify-center pb-10"
-                />
-              )}
-            </div>
+            )}
           </div>
         );
       })}

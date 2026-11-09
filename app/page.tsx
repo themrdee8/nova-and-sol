@@ -68,7 +68,7 @@ export default function Home() {
         ) : (
           <div className="h-32 bg-white flex justify-center p-8 mb-">
             <p className="uppercase text-2xl font-serif mt-4 text-center">
-              Deliveries go out on fridays
+              Welcome to the home of nova &amp; sol
             </p>{" "}
           </div>
         )}

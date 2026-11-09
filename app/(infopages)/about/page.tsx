@@ -102,7 +102,6 @@ const About = () => {
 
           <div>
             <p>Currently, we deliver within:</p>
-            
             <ul className="list-disc p-4">
               <li>Accra</li>
               <li> Kumasi</li>
@@ -114,8 +113,8 @@ const About = () => {
         <div>
           <p className="font-semibold uppercase">How much is delivery?</p>
           <ul className="list-disc p-4">
-            <li>Accra: ¢30&ndash;¢35</li>
-            <li> Kumasi: ¢40</li>
+            <li>Accra: ¢35&ndash;¢40</li>
+            <li> Outside Accra: ¢50</li>
           </ul>
           Orders above ¢450 qualify for free delivery.
         </div>
@@ -165,13 +164,11 @@ const About = () => {
             How do I care for my jewelry?
           </p>
           <p>Care instructions are included with every order.</p>{" "}
-          <p>
-            To maintain your pieces:{" "}
-            <ul className="list-disc p-4">
-              <li>Avoid water, perfumes, and harsh chemicals</li>
-              <li>Store in the provided pouch when not in use</li>{" "}
-            </ul>
-          </p>
+          <p>To maintain your pieces: </p>
+          <ul className="list-disc p-4">
+            <li>Avoid water, perfumes, and harsh chemicals</li>
+            <li>Store in the provided pouch when not in use</li>{" "}
+          </ul>
         </div>
         <div>
           <p className="font-semibold uppercase">

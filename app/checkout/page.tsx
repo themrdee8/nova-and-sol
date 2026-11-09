@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
-  const router = useRouter()
+  const router = useRouter();
 
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -117,8 +117,8 @@ const CheckoutPage = () => {
 
         onSuccess: (transaction) => {
           router.push(
-            `/success?reference=${transaction.reference}&total=${total}`
-          )
+            `/success?reference=${transaction.reference}&total=${total}`,
+          );
         },
 
         onCancel: () => {
@@ -231,8 +231,8 @@ const CheckoutPage = () => {
 
         <p className="mb-2 uppercase">Total: GHS {total}</p>
         <p className="uppercase text-[15px]">
-          ( Delivery ranges from ¢30 - ¢35 for orders in Accra and Tema and ¢40
-          for orders to Kumasi )
+          ( Delivery ranges from ¢35 - ¢40 for orders in Accra and Tema and ¢50
+          for orders outside Accra )
         </p>
 
         <p className="uppercase text-[15px]">
